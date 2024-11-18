@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.a4-page {
+  width: 210mm; /* Lebar A4 */
+  height: 297mm; /* Tinggi A4 */
+  margin: 0 auto; /* Centering halaman */
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden; /* Menghindari overflow jika ada konten lebih */
+}
