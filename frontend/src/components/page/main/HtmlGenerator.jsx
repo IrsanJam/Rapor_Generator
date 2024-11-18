@@ -81,7 +81,6 @@ const HTMLGenerator = () => {
     const randomId = Math.floor(Math.random() * 1000);
     setParsedData(JSON.parse(jsonData));
     const data = {
-      name: `Template ${randomId}`,
       style: cssCode,
       jsx: jsxCode,
       json: parsedData,
@@ -97,6 +96,7 @@ const HTMLGenerator = () => {
             icon: 'success',
             confirmButtonColor: '#3085d6',
           });
+          window.location.href = '/main';
         }
         console.log(response);
       } catch (error) {

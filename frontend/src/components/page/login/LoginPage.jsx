@@ -18,7 +18,6 @@ const LoginPage = () => {
         email: loginState.email,
         password: loginState.password,
       });
-      console.log(response);
       if (response) {
         const token = response.data.accessToken;
         Cookies.set('authToken', token);
@@ -40,7 +39,7 @@ const LoginPage = () => {
         text: 'Username atau password salah.',
         icon: 'error',
         confirmButtonText: 'Coba Lagi',
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#06121e',
       });
     }
   };

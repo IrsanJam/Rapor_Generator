@@ -1,5 +1,6 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 const LogoutButton = () => {
   const handleLogout = () => {
@@ -17,6 +18,7 @@ const LogoutButton = () => {
         // Logic untuk logout, misalnya clear token dan redirect
         Swal.fire('Logged out!', 'You have been logged out.', 'info');
         // Contoh redirect setelah logout
+        Cookies.remove('authToken');
         window.location.href = '/';
       }
     });
