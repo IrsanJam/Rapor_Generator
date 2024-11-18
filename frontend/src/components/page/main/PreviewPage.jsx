@@ -28,6 +28,7 @@ const PreviewPage = () => {
 
   useEffect(() => {
     showDetail();
+    2;
   }, []);
 
   return (
@@ -47,7 +48,7 @@ const PreviewPage = () => {
       {/* Error Display */}
       {error && (
         <div className="p-4 bg-red-500 text-white absolute bottom-0 right-0 m-4 rounded">
-          {error}
+          {error}d
         </div>
       )}
     </div>
