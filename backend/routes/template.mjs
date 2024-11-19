@@ -149,37 +149,37 @@ router.patch('/template', async (req, res) => {
 
 // for html direct
 
-router.post('/preview', async (req, res) => {
-  const jsonData = req.body;
-  try {
-    const userId = req.query.id; // Ambil userId dari query parameter
-    if (!userId) {
-      return res.status(400).json({ message: 'User ID is required' });
-    }
+// router.post('/preview', async (req, res) => {
+//   const jsonData = req.body;
+//   try {
+//     const userId = req.query.id; // Ambil userId dari query parameter
+//     if (!userId) {
+//       return res.status(400).json({ message: 'User ID is required' });
+//     }
 
-    const query = 'SELECT * FROM templates WHERE id = ?';
-    const [result] = await db.execute(query, [userId]);
+//     const query = 'SELECT * FROM templates WHERE id = ?';
+//     const [result] = await db.execute(query, [userId]);
 
-    if (result.length === 0) {
-      return res.status(200).json({ message: 'There is no template' });
-    }
+//     if (result.length === 0) {
+//       return res.status(200).json({ message: 'There is no template' });
+//     }
 
-    const htmlContent = result[0].html; // Template HTML dari database
-    const options = { format: 'A4' };
-    const file = { content: htmlContent };
+//     const htmlContent = result[0].html; // Template HTML dari database
+//     const options = { format: 'A4' };
+//     const file = { content: htmlContent };
 
-    // Konversi HTML ke PDF
-    const pdfBuffer = await pdf.generatePdf(file, options);
+//     // Konversi HTML ke PDF
+//     const pdfBuffer = await pdf.generatePdf(file, options);
 
-    // Kirim PDF ke client
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline; filename=template.pdf'); // Untuk preview di browser
-    res.send(pdfBuffer);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Error fetching data or generating PDF' });
-  }
-});
+//     // Kirim PDF ke client
+//     res.setHeader('Content-Type', 'application/pdf');
+//     res.setHeader('Content-Disposition', 'inline; filename=template.pdf'); // Untuk preview di browser
+//     res.send(pdfBuffer);
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ message: 'Error fetching data or generating PDF' });
+//   }
+// });
 
 router.post('/generate-pdf', async (req, res) => {
   const jsonData = req.body;
@@ -223,6 +223,8 @@ router.post('/preview', async (req, res) => {
 
     let htmlContent = result[0].html; // Template HTML dari database
 
+    console.log('Original HTML Content:', htmlContent); // Log template HTML asli
+
     // Cari JSON data di dalam template HTML
     const dataRegex = /const data = (.*?);/s;
     const match = htmlContent.match(dataRegex);
@@ -230,15 +232,19 @@ router.post('/preview', async (req, res) => {
       return res.status(500).json({ message: 'Failed to find data in template' });
     }
 
+    console.log('Matched Data:', match);
+
     // Parse JSON yang ada
     const currentData = JSON.parse(match[1]);
+    console.log('Current Data:', currentData); // Log data yang ada
 
     // Perbarui JSON dengan data baru
     const updatedData = { ...currentData, ...newData }; // Gabungkan data lama dengan data baru
+    console.log('Updated Data:', updatedData); // Log data yang sudah diperbarui
 
     // Ganti JSON dalam template
     htmlContent = htmlContent.replace(dataRegex, `const data = ${JSON.stringify(updatedData)};`);
-    console.log('Updated HTML Content:', htmlContent);
+    console.log('Updated HTML Content:', htmlContent); // Log HTML setelah update
 
     const options = { format: 'A4' };
     const file = { content: htmlContent };
