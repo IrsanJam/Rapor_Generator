@@ -13,7 +13,6 @@ import PreviewPage from './components/page/main/PreviewPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import NotFound from './routes/NotFound';
 function App() {
-  const [count, setCount] = useState(0);
   return (
     <Router>
       <Routes>

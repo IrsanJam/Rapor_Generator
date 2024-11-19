@@ -70,6 +70,8 @@ const HTMLGenerator = () => {
     generatePreview();
   }, [jsxCode, cssCode, parsedData, error, buttonCard, id]);
 
+  console.log(preview);
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault(); // Mencegah line break
@@ -81,6 +83,7 @@ const HTMLGenerator = () => {
     const randomId = Math.floor(Math.random() * 1000);
     setParsedData(JSON.parse(jsonData));
     const data = {
+      name: `Template ${randomId}`,
       style: cssCode,
       jsx: jsxCode,
       json: parsedData,
