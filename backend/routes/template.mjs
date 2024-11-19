@@ -146,28 +146,45 @@ router.patch('/template', async (req, res) => {
   }
 });
 
-router.post('/generate-pdf', async (req, res) => {
-  const jsonData = req.body;
-  const htmlContent = `
-      <html>
-      <head>
-          <title>PDF Preview</title>
-      </head>
-      <body>
-          <h1>Generated PDF</h1>
-          <pre>${JSON.stringify(jsonData, null, 2)}</pre>
-      </body>
-      </html>
-  `;
+router.get('/preview', async (req, res) => {
+  const newData = req.body; // JSON baru dari request body
 
-  const options = { format: 'A4' };
-  const file = { content: htmlContent };
-  const pdfBuffer = await pdf.generatePdf(file, options);
+  try {
+    const userId = req.query.id; // Ambil userId dari query parameter
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
 
-  // Kirim PDF ke client
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'inline; filename=template.pdf'); // Untuk preview di browser
-  res.send(pdfBuffer);
+    const query = 'SELECT * FROM templates WHERE id = ?';
+    const [result] = await db.execute(query, [userId]);
+
+    if (result.length === 0) {
+      return res.status(200).json({ message: 'There is no template' });
+    }
+
+    let htmlContent = result[0].html; // Template HTML dari database
+    const dataRegex = /const data = (.*?);/s;
+    const match = htmlContent.match(dataRegex);
+    if (!match) {
+      return res.status(500).json({ message: 'Failed to find data in template' });
+    }
+    const currentData = JSON.parse(match[1]);
+    const updatedData = { ...currentData, ...newData }; // Gabungkan data lama dengan data baru
+    htmlContent = htmlContent.replace(dataRegex, `const data = ${JSON.stringify(updatedData)};`);
+    const options = { format: 'A4' };
+    const file = { content: htmlContent };
+
+    // Konversi HTML ke PDF
+    const pdfBuffer = await pdf.generatePdf(file, options);
+
+    // Kirim PDF ke client
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'inline; filename=template.pdf'); // Untuk preview di browser
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error fetching data or generating PDF' });
+  }
 });
 
 router.post('/preview', async (req, res) => {
