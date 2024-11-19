@@ -1,4 +1,4 @@
-# Fullstack JavaScript Store (MERN)
+# Raport Generator
 
 ![GitHub](https://img.shields.io/github/license/IrsanJam/MERN_BOOK_STORE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/IrsanJam/MERN_BOOK_STORE)
@@ -17,7 +17,7 @@
 
 ## Description
 
-This is a web-based  store project, built with MERN stack (MongoDB, Express.js, React.js, and Node.js) technologies. The project allows users to perform CRUD (Create, Read, Update, Delete) operations on a list of products.
+This is a web-based  store project, built with MERN stack (MySQL, Express.js, React.js, and Node.js) technologies. The project allows users to perform CRUD (Create, Read, Update, Delete) operations on report PDF Generator.
 
 ## Features
 
@@ -28,7 +28,7 @@ This is a web-based  store project, built with MERN stack (MongoDB, Express.js, 
 
 ## Technologies Used
 
-- **MongoDB**: NoSQL database used to store data.
+- **MySql**: database used to store data.
 - **Express.js**: Backend web framework to handle HTTP requests and business logic.
 - **React.js**: JavaScript library for building interactive user interfaces.
 - **Node.js**: JavaScript runtime environment to run the backend server.
