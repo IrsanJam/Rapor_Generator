@@ -187,30 +187,14 @@ router.post('/preview', async (req, res) => {
     }
 
     let htmlContent = result[0].html; // Template HTML dari database
-
-    console.log('Original HTML Content:', htmlContent); // Log template HTML asli
-
-    // Cari JSON data di dalam template HTML
     const dataRegex = /const data = (.*?);/s;
     const match = htmlContent.match(dataRegex);
     if (!match) {
       return res.status(500).json({ message: 'Failed to find data in template' });
     }
-
-    console.log('Matched Data:', match);
-
-    // Parse JSON yang ada
     const currentData = JSON.parse(match[1]);
-    console.log('Current Data:', currentData); // Log data yang ada
-
-    // Perbarui JSON dengan data baru
     const updatedData = { ...currentData, ...newData }; // Gabungkan data lama dengan data baru
-    console.log('Updated Data:', updatedData); // Log data yang sudah diperbarui
-
-    // Ganti JSON dalam template
     htmlContent = htmlContent.replace(dataRegex, `const data = ${JSON.stringify(updatedData)};`);
-    console.log('Updated HTML Content:', htmlContent); // Log HTML setelah update
-
     const options = { format: 'A4' };
     const file = { content: htmlContent };
 
