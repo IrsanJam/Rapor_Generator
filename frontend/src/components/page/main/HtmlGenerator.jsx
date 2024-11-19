@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { File, LogOut, Eye, Code, Database, Download, Delete } from 'lucide-react';
+import { File, LogOut, Eye, Code, Database, Download, Delete, Copy } from 'lucide-react';
 import Layout from '../layout/Layout';
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Editor from '@monaco-editor/react';
 
 const HTMLGenerator = () => {
   const [activeTab, setActiveTab] = useState('jsx');
@@ -13,7 +14,6 @@ const HTMLGenerator = () => {
   const [buttonCard, setButtonCard] = useState([]);
   const location = useLocation();
   const { name, jsx, html, json, css } = location.state || {}; // Data dari state
-
   const [jsxCode, setJsxCode] = useState(jsx ? jsx : '');
   const [cssCode, setCssCode] = useState(css ? css : '');
   const [jsonData, setJsonData] = useState(json ? json : '{}');
@@ -70,8 +70,6 @@ const HTMLGenerator = () => {
     generatePreview();
   }, [jsxCode, cssCode, parsedData, error, buttonCard, id]);
 
-  console.log(preview);
-
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault(); // Mencegah line break
@@ -83,7 +81,6 @@ const HTMLGenerator = () => {
     const randomId = Math.floor(Math.random() * 1000);
     setParsedData(JSON.parse(jsonData));
     const data = {
-      name: `Template ${randomId}`,
       style: cssCode,
       jsx: jsxCode,
       json: parsedData,
@@ -101,14 +98,16 @@ const HTMLGenerator = () => {
             text: ' Berhasil Menyimpan Data',
             icon: 'success',
             confirmButtonColor: '#3085d6',
+          }).then((res) => {
+            if (res.isConfirmed) {
+              window.location.href = '/main';
+            }
           });
-          window.location.href = '/main';
         }
-        console.log(response);
       } catch (error) {
         Swal.fire({
           title: 'Update Gagal',
-          text: 'Tidak Berhasil Menyimpan Data',
+          text: 'JSX Harus diisi ',
           icon: 'error',
           confirmButtonColor: '#3085d6',
         });
@@ -201,45 +200,87 @@ const HTMLGenerator = () => {
     handleDelete(id);
   };
 
+  const handleCopyId = () => {
+    if (id) {
+      navigator.clipboard
+        .writeText(id)
+        .then(() => {
+          Swal.fire({
+            title: 'Berhasil',
+            text: `ID "${id}" telah disalin ke clipboard`,
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            title: 'Gagal',
+            text: 'Gagal menyalin ID',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+          });
+        });
+    } else {
+      Swal.fire({
+        title: 'Tidak Ada ID',
+        text: 'ID belum tersedia untuk disalin',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+      });
+    }
+  };
+
   const renderEditor = () => {
     switch (activeTab) {
       case 'jsx':
         return (
-          <div className="relative h-full">
-            <textarea
-              onKeyDown={handleKeyDown}
-              value={error ? error : jsxCode}
-              onChange={(e) => setJsxCode(e.target.value)}
-              className="w-full h-full bg-gray-900 text-gray-100 font-mono p-4 resize-none focus:outline-none"
-              aria-label="JSX Editor"
-              placeholder="Enter your JSX template here..."
-            />
-            <div className="absolute bottom-4 right-4 text-xs text-gray-400">
-              Using Tailwind CSS
-            </div>
-          </div>
+          <Editor
+            height={'90vh'}
+            defaultLanguage="html"
+            value={jsxCode}
+            onChange={(value) => setJsxCode(value)}
+            theme="vs-dark"
+            options={{
+              minimap: {
+                enabled: false,
+              },
+              automaticLayout: true,
+              formatOnPaste: true,
+              formatOnType: true,
+            }}
+          />
         );
       case 'css':
         return (
           <div className="relative h-full">
-            <textarea
+            <Editor
+              height={'90vh'}
+              defaultLanguage="css"
               value={cssCode}
-              onChange={(e) => setCssCode(e.target.value)}
-              className="w-full h-full bg-gray-900 text-gray-100 font-mono p-4 resize-none focus:outline-none"
-              aria-label="Custom CSS Editor"
-              placeholder="Add custom CSS styles here (only for styles not available in Tailwind)..."
+              onChange={(value) => setCssCode(value)}
+              theme="vs-dark"
+              options={{
+                minimap: {
+                  enabled: false,
+                },
+              }}
             />
             <div className="absolute bottom-4 right-4 text-xs text-gray-400">Custom CSS Only</div>
           </div>
         );
       case 'json':
         return (
-          <textarea
+          <Editor
+            height={'90vh'}
+            defaultLanguage="json"
             value={jsonData}
-            onChange={(e) => setJsonData(e.target.value)}
-            className="w-full h-full bg-gray-900 text-gray-100 font-mono p-4 resize-none focus:outline-none"
-            aria-label="JSON Editor"
-            placeholder="Enter your data structure here..."
+            onChange={(value) => setJsonData(value)}
+            theme="vs-dark"
+            options={{
+              minimap: {
+                enabled: false,
+              },
+            }}
           />
         );
       default:
@@ -282,6 +323,14 @@ const HTMLGenerator = () => {
           </button>
 
           <button
+            onClick={handleCopyId}
+            className=" flex items-center gap-2 px-4 py-2 bg-zinc-500 rounded hover:bg-zinc-400"
+          >
+            <Copy size={16} />
+            Salin ID
+          </button>
+
+          <button
             onClick={handleHapus}
             className="ml-auto self-end flex items-center gap-2 px-4 py-2 bg-red-600 rounded hover:bg-red-700"
           >
@@ -299,18 +348,15 @@ const HTMLGenerator = () => {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 grid grid-cols-2 gap-4 p-4">
+        <div className="flex-1 grid grid-cols-2 gap-4">
           {/* Editor */}
-          <div className="bg-gray-800 rounded-lg overflow-hidden">
+          <div className="bg-gray-800  overflow-hidden">
             <div className="h-full">{renderEditor()}</div>
           </div>
 
           {/* Preview */}
-          <div className="bg-white rounded-lg overflow-hidden">
-            <div className="bg-gray-100 p-2 flex items-center gap-2">
-              <Eye size={16} className="text-gray-600" />
-              <span className="text-gray-600">Preview</span>
-            </div>
+          <div className="bg-white overflow-hidden">
+            <div className="bg-gray-100 p-2 flex items-center gap-2"></div>
             <iframe
               srcDoc={preview}
               title="Preview"

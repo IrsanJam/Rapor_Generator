@@ -119,16 +119,15 @@ router.patch('/template', async (req, res) => {
       return res.status(400).json({ message: 'User ID is required' });
     }
 
-    if (!name) {
-      return res.status(400).json({ message: 'Field "name" is required' });
+    if (!jsx) {
+      return res.status(400).json({ message: 'Field "JSX" is required' });
     }
 
     // Query untuk memperbarui template berdasarkan userId
-    const query =
-      'UPDATE templates SET name = ?, style = ?, jsx = ?, json = ?, html = ? WHERE id = ?';
+    const query = 'UPDATE templates SET  style = ?, jsx = ?, json = ?, html = ? WHERE id = ?';
 
     // Nilai-nilai yang akan dimasukkan ke dalam query
-    const values = [name, style, jsx, JSON.stringify(json), html, userId];
+    const values = [style, jsx, JSON.stringify(json), html, userId];
 
     // Menggunakan Promise untuk query
     const [result] = await db.execute(query, values);
