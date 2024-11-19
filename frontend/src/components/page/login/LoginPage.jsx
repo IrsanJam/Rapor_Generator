@@ -14,7 +14,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5555/login`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
         email: loginState.email,
         password: loginState.password,
       });

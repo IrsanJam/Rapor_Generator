@@ -91,7 +91,10 @@ const HTMLGenerator = () => {
     };
     const handleUpdate = async (id, data) => {
       try {
-        const response = await axios.patch(`http://localhost:5555/template/?id=${id}`, data);
+        const response = await axios.patch(
+          `${import.meta.env.VITE_API_URL}/template/?id=${id}`,
+          data
+        );
         if (response) {
           Swal.fire({
             title: 'Berhasil',
@@ -181,7 +184,7 @@ const HTMLGenerator = () => {
       }).then((res) => {
         if (res.isConfirmed) {
           if (res.isConfirmed) {
-            axios.delete(`http://localhost:5555/template/?id=${id}`, {}).then(() => {
+            axios.delete(`${import.meta.env.VITE_API_URL}/template/?id=${id}`, {}).then(() => {
               Swal.fire({
                 title: 'Confirmation',
                 text: 'Produk Berhasil di hapus',

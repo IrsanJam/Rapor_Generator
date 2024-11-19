@@ -13,7 +13,7 @@ function CreateTemplateModal({ onClose }) {
       name: templateName,
     };
     try {
-      const response = await axios.post('http://localhost:5555/template', data);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/template`, data);
       if (response) {
         Swal.fire({
           title: 'Berhasil',

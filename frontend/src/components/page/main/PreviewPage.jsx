@@ -16,7 +16,7 @@ const PreviewPage = () => {
   const showDetail = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5555/template/?id=${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/?id=${id}`);
       const filteredData = response.data;
       setJsxCode(filteredData[1].jsx);
       setCssCode(filteredData[1].style);

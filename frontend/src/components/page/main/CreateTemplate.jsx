@@ -15,7 +15,7 @@ function CreateTemplate() {
 
   const cekData = async () => {
     try {
-      const response = await axios.get('http://localhost:5555/template');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/template`);
       if (response) {
         setButtonCard(response.data);
       }
