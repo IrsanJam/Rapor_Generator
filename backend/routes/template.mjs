@@ -1,7 +1,6 @@
 import express from 'express';
 import { db } from '../config.mjs';
 import pdf from 'html-pdf-node';
-import ReactDOMServer from 'react-dom/server';
 
 const router = express.Router();
 
@@ -146,40 +145,6 @@ router.patch('/template', async (req, res) => {
     return res.status(500).json({ message: 'Error updating template', error });
   }
 });
-
-// for html direct
-
-// router.post('/preview', async (req, res) => {
-//   const jsonData = req.body;
-//   try {
-//     const userId = req.query.id; // Ambil userId dari query parameter
-//     if (!userId) {
-//       return res.status(400).json({ message: 'User ID is required' });
-//     }
-
-//     const query = 'SELECT * FROM templates WHERE id = ?';
-//     const [result] = await db.execute(query, [userId]);
-
-//     if (result.length === 0) {
-//       return res.status(200).json({ message: 'There is no template' });
-//     }
-
-//     const htmlContent = result[0].html; // Template HTML dari database
-//     const options = { format: 'A4' };
-//     const file = { content: htmlContent };
-
-//     // Konversi HTML ke PDF
-//     const pdfBuffer = await pdf.generatePdf(file, options);
-
-//     // Kirim PDF ke client
-//     res.setHeader('Content-Type', 'application/pdf');
-//     res.setHeader('Content-Disposition', 'inline; filename=template.pdf'); // Untuk preview di browser
-//     res.send(pdfBuffer);
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: 'Error fetching data or generating PDF' });
-//   }
-// });
 
 router.post('/generate-pdf', async (req, res) => {
   const jsonData = req.body;
