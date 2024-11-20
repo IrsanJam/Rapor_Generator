@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { File, LogOut, Eye, Code, Database, Download, Delete, Copy } from 'lucide-react';
+import { File, LogOut, Eye, Code, Database, Download, Delete, Copy, Trash2 } from 'lucide-react';
 import Layout from '../layout/Layout';
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -22,16 +22,72 @@ const HTMLGenerator = () => {
   const [parsedData, setParsedData] = useState({});
 
   useEffect(() => {
+    if (!jsonData.trim()) {
+      setError('JSON tidak boleh kosong');
+      setParsedData({});
+      return;
+    }
+
     try {
-      setParsedData(JSON.parse(jsonData));
+      const parsed = JSON.parse(jsonData);
+      setParsedData(parsed);
+      setError(''); // Reset error jika berhasil
     } catch (e) {
       setError('Invalid JSON data');
+      setParsedData({});
     }
   }, [jsonData]);
 
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const handleJsonChange = debounce((value) => setJsonData(value), 300);
+
+  // const generatePreview = () => {
+  //   if (error) {
+  //     setPreview('');
+  //     return;
+  //   }
+
+  //   const escapedJsxCode = jsxCode.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+  //   const html = `<!DOCTYPE html>
+  //     <html lang="en">
+  //     <head>
+  //         <meta charset="UTF-8">
+  //         <title>Generated Template</title>
+  //         <script src="https://cdn.tailwindcss.com"></script>
+  //         <style>
+  //         ${cssCode}
+  //         </style>
+  //     </head>
+  //     <body class="bg-gray-50">
+  //         <div id="root"></div>
+  //         <!-- Include React and ReactDOM -->
+  //         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  //         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  //         <!-- Include Babel -->
+  //         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  //         <script type="text/babel">
+  //         const data = ${JSON.stringify(parsedData)};
+  //         const App = () => (
+  //             ${escapedJsxCode}
+  //         );
+  //         ReactDOM.render(<App />, document.getElementById('root'));
+  //         </script>
+  //     </body>
+  //     </html>
+  //   `;
+  //   setPreview(html);
+  // };
+
   const generatePreview = () => {
-    if (error) {
-      setPreview('');
+    if (error || !parsedData) {
+      setPreview('<p style="color: red; text-align: center;">Invalid or Empty JSON Data</p>');
       return;
     }
 
@@ -48,10 +104,8 @@ const HTMLGenerator = () => {
       </head>
       <body class="bg-gray-50">
           <div id="root"></div>
-          <!-- Include React and ReactDOM -->
           <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
           <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-          <!-- Include Babel -->
           <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
           <script type="text/babel">
           const data = ${JSON.stringify(parsedData)};
@@ -68,7 +122,7 @@ const HTMLGenerator = () => {
 
   useEffect(() => {
     generatePreview();
-  }, [jsxCode, cssCode, parsedData, error, buttonCard, id]);
+  }, [jsxCode, cssCode, parsedData, error, buttonCard, id, jsonData]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -274,7 +328,7 @@ const HTMLGenerator = () => {
             height={'90vh'}
             defaultLanguage="json"
             value={jsonData}
-            onChange={(value) => setJsonData(value)}
+            onChange={(value) => handleJsonChange(value)}
             theme="vs-dark"
             options={{
               minimap: {
@@ -334,7 +388,7 @@ const HTMLGenerator = () => {
             onClick={handleHapus}
             className="ml-auto self-end flex items-center gap-2 px-4 py-2 bg-red-600 rounded hover:bg-red-700"
           >
-            <Delete size={16} />
+            <Trash2 size={16} />
             Hapus
           </button>
 
