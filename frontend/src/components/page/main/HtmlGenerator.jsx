@@ -9,11 +9,11 @@ import Editor from '@monaco-editor/react';
 
 const HTMLGenerator = () => {
   const [activeTab, setActiveTab] = useState('jsx');
-  const [item, setItem] = useState('');
+  const [, setItem] = useState('');
   const { id } = useParams();
   const [buttonCard, setButtonCard] = useState([]);
   const location = useLocation();
-  const { name, jsx, html, json, css } = location.state || {}; // Data dari state
+  const { jsx, html, json, css } = location.state || {}; // Data dari state
   const [jsxCode, setJsxCode] = useState(jsx ? jsx : '');
   const [cssCode, setCssCode] = useState(css ? css : '');
   const [jsonData, setJsonData] = useState(json ? json : '{}');
@@ -324,7 +324,7 @@ const HTMLGenerator = () => {
 
           <button
             onClick={handleCopyId}
-            className=" flex items-center gap-2 px-4 py-2 bg-zinc-500 rounded hover:bg-zinc-400"
+            className=" flex items-center gap-2 px-4 py-2 bg-amber-500 rounded hover:bg-amber-600"
           >
             <Copy size={16} />
             Salin ID
