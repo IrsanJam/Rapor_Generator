@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { File, LogOut, Eye, Code, Database, Download, Delete, Copy, Trash2 } from 'lucide-react';
+import {
+  File,
+  LogOut,
+  Eye,
+  Code,
+  Database,
+  Download,
+  Delete,
+  Copy,
+  Trash2,
+  Save,
+} from 'lucide-react';
 import Layout from '../layout/Layout';
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -15,7 +26,7 @@ const HTMLGenerator = () => {
   const location = useLocation();
   const { jsx, html, json, css } = location.state || {}; // Data dari state
   const [jsxCode, setJsxCode] = useState(jsx ? jsx : '');
-  const [cssCode, setCssCode] = useState(css ? css : '');
+  const [cssCode, setCssCode] = useState(css ? css : '{}');
   const [jsonData, setJsonData] = useState(json ? json : '{}');
   const [preview, setPreview] = useState(html);
   const [error, setError] = useState('');
@@ -23,7 +34,7 @@ const HTMLGenerator = () => {
 
   useEffect(() => {
     if (!jsonData.trim()) {
-      setError('JSON tidak boleh kosong');
+      setError('JSON cannot be empty');
       setParsedData({});
       return;
     }
@@ -46,7 +57,27 @@ const HTMLGenerator = () => {
     };
   };
 
-  const handleJsonChange = debounce((value) => setJsonData(value), 300);
+  const handleJsonChange = debounce((value) => {
+    try {
+      const formattedJson = JSON.stringify(JSON.parse(value), null, 2);
+      setJsonData(formattedJson);
+      setError('');
+    } catch (e) {
+      setJsonData(value);
+      setError('Invalid JSON data');
+    }
+  }, 300);
+
+  useEffect(() => {
+    if (location.state?.json) {
+      try {
+        const formattedJson = JSON.stringify(JSON.parse(location.state.json), null, 2);
+        setJsonData(formattedJson);
+      } catch {
+        setJsonData(location.state.json);
+      }
+    }
+  }, [location.state]);
 
   // const generatePreview = () => {
   //   if (error) {
@@ -99,6 +130,9 @@ const HTMLGenerator = () => {
           <title>Generated Template</title>
            <script src="https://cdn.tailwindcss.com"></script>
           <style>
+          html {
+         -webkit-print-color-adjust: exact;
+       }
           ${cssCode}
           </style>
       </head>
@@ -148,14 +182,10 @@ const HTMLGenerator = () => {
         );
         if (response) {
           Swal.fire({
-            title: 'Berhasil',
-            text: ' Berhasil Menyimpan Data',
+            title: 'Success',
+            text: ' Success Updated Data',
             icon: 'success',
             confirmButtonColor: '#3085d6',
-          }).then((res) => {
-            if (res.isConfirmed) {
-              window.location.href = '/main';
-            }
           });
         }
       } catch (error) {
@@ -198,6 +228,9 @@ const HTMLGenerator = () => {
               <title>Generated Template</title>
                <script src="https://cdn.tailwindcss.com"></script>
               <style>
+              html {
+         -webkit-print-color-adjust: exact;
+       }
               ${cssCode}
               </style>
           </head>
@@ -261,24 +294,24 @@ const HTMLGenerator = () => {
         .writeText(id)
         .then(() => {
           Swal.fire({
-            title: 'Berhasil',
-            text: `ID "${id}" telah disalin ke clipboard`,
+            title: 'Success',
+            text: `ID "${id}" been copied`,
             icon: 'success',
             confirmButtonColor: '#3085d6',
           });
         })
         .catch(() => {
           Swal.fire({
-            title: 'Gagal',
-            text: 'Gagal menyalin ID',
+            title: 'Failed',
+            text: 'Failed to copy ID',
             icon: 'error',
             confirmButtonColor: '#3085d6',
           });
         });
     } else {
       Swal.fire({
-        title: 'Tidak Ada ID',
-        text: 'ID belum tersedia untuk disalin',
+        title: 'No ID Found',
+        text: 'ID not found',
         icon: 'warning',
         confirmButtonColor: '#3085d6',
       });
@@ -335,6 +368,9 @@ const HTMLGenerator = () => {
               minimap: {
                 enabled: false,
               },
+              automaticLayout: true,
+              formatOnPaste: true,
+              formatOnType: true,
             }}
           />
         );
@@ -382,7 +418,7 @@ const HTMLGenerator = () => {
             className=" flex items-center gap-2 px-4 py-2 bg-amber-500 rounded hover:bg-amber-600"
           >
             <Copy size={16} />
-            Salin ID
+            Copy ID
           </button>
 
           <button
@@ -390,15 +426,15 @@ const HTMLGenerator = () => {
             className="ml-auto self-end flex items-center gap-2 px-4 py-2 bg-red-600 rounded hover:bg-red-700"
           >
             <Trash2 size={16} />
-            Hapus
+            Delete
           </button>
 
           <button
             onClick={saveData}
             className=" flex items-center gap-2 px-4 py-2 bg-green-600 rounded hover:bg-green-700"
           >
-            <Download size={16} />
-            Simpan
+            <Save size={16} />
+            Save
           </button>
         </div>
 

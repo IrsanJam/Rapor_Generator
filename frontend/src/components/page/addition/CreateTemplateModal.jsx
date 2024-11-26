@@ -16,8 +16,8 @@ function CreateTemplateModal({ onClose }) {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/template`, data);
       if (response) {
         Swal.fire({
-          title: 'Berhasil',
-          text: `Data berhasil disimpan`,
+          title: 'Done',
+          text: `Data succesfully saved`,
           icon: 'success',
           confirmButtonText: 'OK',
           confirmButtonColor: 'rgb(3 150 199)',

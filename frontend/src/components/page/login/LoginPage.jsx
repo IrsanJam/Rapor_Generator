@@ -23,7 +23,7 @@ const LoginPage = () => {
         Cookies.set('authToken', token);
         Swal.fire({
           title: 'Confirmation',
-          text: `Hello Selamat Datang`,
+          text: `Welcome Report Gen`,
           icon: 'success',
           confirmButtonText: 'OK',
           confirmButtonColor: 'rgb(3 150 199)',
@@ -35,8 +35,8 @@ const LoginPage = () => {
       }
     } catch (error) {
       Swal.fire({
-        title: 'Login Gagal',
-        text: 'Username atau password salah.',
+        title: 'Login Failed',
+        text: 'Username or password is wrong.',
         icon: 'error',
         confirmButtonText: 'Coba Lagi',
         confirmButtonColor: '#06121e',
