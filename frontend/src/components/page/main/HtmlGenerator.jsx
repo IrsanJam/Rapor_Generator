@@ -97,17 +97,17 @@ const HTMLGenerator = () => {
       <head>
           <meta charset="UTF-8">
           <title>Generated Template</title>
-          <script src="https://cdn.tailwindcss.com"></script>
+           <script src="https://cdn.tailwindcss.com"></script>
           <style>
           ${cssCode}
           </style>
       </head>
       <body class="bg-gray-50">
           <div id="root"></div>
-          <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-          <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-          <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-          <script type="text/babel">
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+           <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+            <script type="text/babel">
           const data = ${JSON.stringify(parsedData)};
           const App = () => (
               ${escapedJsxCode}
@@ -196,7 +196,7 @@ const HTMLGenerator = () => {
           <head>
               <meta charset="UTF-8">
               <title>Generated Template</title>
-              <script src="https://cdn.tailwindcss.com"></script>
+               <script src="https://cdn.tailwindcss.com"></script>
               <style>
               ${cssCode}
               </style>
@@ -204,13 +204,14 @@ const HTMLGenerator = () => {
           <body class="bg-gray-50">
               <div id="root"></div>
               <!-- Include React and ReactDOM -->
-              <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-              <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
               <!-- Include Babel -->
-              <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-              <script type="text/babel">
+            <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+            <script type="text/babel">
               const data = ${JSON.stringify(parsedData)};
               const App = () => (
+                
                   ${escapedJsxCode}
               );
               ReactDOM.render(<App />, document.getElementById('root'));
@@ -355,7 +356,7 @@ const HTMLGenerator = () => {
             }`}
           >
             <Code size={16} />
-            JSX Template
+            Template
           </button>
           <button
             onClick={() => setActiveTab('css')}
@@ -364,7 +365,7 @@ const HTMLGenerator = () => {
             }`}
           >
             <Code size={16} />
-            Custom CSS
+            Style
           </button>
           <button
             onClick={() => setActiveTab('json')}
@@ -373,7 +374,7 @@ const HTMLGenerator = () => {
             }`}
           >
             <Database size={16} />
-            JSON Data
+            Data
           </button>
 
           <button
@@ -410,11 +411,10 @@ const HTMLGenerator = () => {
 
           {/* Preview */}
           <div className="bg-white overflow-hidden">
-            <div className="bg-gray-100 p-2 flex items-center gap-2"></div>
             <iframe
               srcDoc={preview}
               title="Preview"
-              className="w-full h-full bg-white"
+              className="w-full h-full"
               sandbox="allow-scripts"
             />
           </div>
