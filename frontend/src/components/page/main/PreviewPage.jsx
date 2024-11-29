@@ -74,7 +74,7 @@ const PreviewPage = () => {
   }, [jsonData, jsxCode]);
 
   return (
-    <div className="h-screen w-full flex shadow-lg text-white a4-page">
+    <div className="h-screen w-full flex shadow-lg text-white ">
       {loading ? (
         <div className="flex justify-center items-center w-full">
           <div className="text-gray-500">Loading...</div>

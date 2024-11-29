@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import authModel from './routes/authRouter.mjs';
 import template from './routes/template.mjs';
+import data from './routes/data.mjs';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(
   })
 );
 
-app.use('/', [authModel, template]);
+app.use('/', [authModel, template, data]);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, Welcome to MERN Project' });

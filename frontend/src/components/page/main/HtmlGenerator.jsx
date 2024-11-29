@@ -17,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from '@monaco-editor/react';
+import TemplateComponent from '../molecules/TemplateComponent';
 
 const HTMLGenerator = () => {
   const [activeTab, setActiveTab] = useState('jsx');
@@ -322,21 +323,22 @@ const HTMLGenerator = () => {
     switch (activeTab) {
       case 'jsx':
         return (
-          <Editor
-            height={'90vh'}
-            defaultLanguage="html"
-            value={jsxCode}
-            onChange={(value) => setJsxCode(value)}
-            theme="vs-dark"
-            options={{
-              minimap: {
-                enabled: false,
-              },
-              automaticLayout: true,
-              formatOnPaste: true,
-              formatOnType: true,
-            }}
-          />
+          // <Editor
+          //   height={'90vh'}
+          //   defaultLanguage="html"
+          //   value={jsxCode}
+          //   onChange={(value) => setJsxCode(value)}
+          //   theme="vs-dark"
+          //   options={{
+          //     minimap: {
+          //       enabled: false,
+          //     },
+          //     automaticLayout: true,
+          //     formatOnPaste: true,
+          //     formatOnType: true,
+          //   }}
+          // />
+          <TemplateComponent />
         );
       case 'css':
         return (
@@ -439,21 +441,22 @@ const HTMLGenerator = () => {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 grid grid-cols-2 gap-4">
+        <div className="flex-1 grid grid-cols-1 gap-4">
           {/* Editor */}
           <div className="bg-gray-800  overflow-hidden">
-            <div className="h-full">{renderEditor()}</div>
+            <div>{renderEditor()}</div>
           </div>
 
           {/* Preview */}
-          <div className="bg-white overflow-hidden">
+
+          {/* <div className="bg-white overflow-hidden">
             <iframe
               srcDoc={preview}
               title="Preview"
               className="w-full h-full"
               sandbox="allow-scripts"
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Error Display */}
