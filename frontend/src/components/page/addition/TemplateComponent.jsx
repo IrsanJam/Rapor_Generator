@@ -22,7 +22,7 @@ const TemplateComponent = () => {
       </div>
 
       {Array.from({ length: 3 }).map((_, index) => (
-        <CardAtom />
+        <CardAtom key={index} />
       ))}
 
       {isModalOpen && <ModalComponent onClose={handleCloseModal} />}

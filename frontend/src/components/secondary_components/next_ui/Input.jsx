@@ -1,11 +1,11 @@
 import { Input } from '@nextui-org/react';
 
-export default function InputNext({ type, label, handleOnChange, formData }) {
+export default function InputNext({ type, label, handleOnChange, formData, selectData }) {
   return (
     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
       <Input
         name={label}
-        value={formData[`${label}`]}
+        value={selectData ? selectData : formData[label]}
         onChange={handleOnChange}
         type={type}
         label={label}

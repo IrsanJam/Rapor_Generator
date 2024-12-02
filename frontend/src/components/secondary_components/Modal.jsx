@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import ImageComp from './third_components/ImageComp';
+import LogoComp from './third_components/LogoComp';
 import SelectNext from './next_ui/Select';
 import Container from './third_components/Container';
 import { CirclePlus } from 'lucide-react';
 
 function ModalComponent({ onClose }) {
   const [formData, setFormData] = useState({});
-  const [, setSelectData] = useState('');
+  const [selectData, setSelectData] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,8 +41,14 @@ function ModalComponent({ onClose }) {
     onClose(); // Tutup modal setelah submit
   };
 
-  const handleOnChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'key' && selectData) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: selectData,
+      }));
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -58,12 +64,14 @@ function ModalComponent({ onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-md w-[30rem] max-h-[90vh]">
         <h2 className="flex justify-start gap-2 items-center  text-xl font-semibold text-gray-800 mb-4">
-          <CirclePlus /> Create Components
+          <CirclePlus size={20} /> Create Components
         </h2>
         <form onSubmit={handleSubmit}>
           <Container>
             <SelectNext handleOnChange={handleSelectChange} />
-            <ImageComp formData={formData} handleOnChange={handleOnChange} />
+            {selectData == 'logo' && (
+              <LogoComp selectData={selectData} formData={formData} handleOnChange={handleChange} />
+            )}
           </Container>
 
           <div className="flex justify-end space-x-2">
