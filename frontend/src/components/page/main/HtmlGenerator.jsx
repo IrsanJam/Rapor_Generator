@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from '@monaco-editor/react';
-import TemplateComponent from '../molecules/TemplateComponent';
+import TemplateComponent from '../addition/TemplateComponent';
 
 const HTMLGenerator = () => {
   const [activeTab, setActiveTab] = useState('jsx');

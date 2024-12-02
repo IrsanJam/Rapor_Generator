@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { File, LogOut, Eye, Code, Database, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import LogoutButton from '../../atom/LogoutButton';
+import LogoutButton from '../../secondary_components/LogoutButton';
 
 const Layout = ({ children }) => {
   const [activeTab, setActiveTab] = useState('jsx');

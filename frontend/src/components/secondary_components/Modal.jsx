@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-function ModalBase({ onClose }) {
+function ModalComponent({ onClose }) {
   const [formData, setFormData] = useState({});
 
   const handleSubmit = async (e) => {
@@ -97,4 +97,4 @@ function ModalBase({ onClose }) {
   );
 }
 
-export default ModalBase;
+export default ModalComponent;

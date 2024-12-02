@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
-import CardAtom from '../../atom/CardAtom';
-import ModalComponents from '../../atom/Modal';
+import CardAtom from '../../secondary_components/CardAtom';
+import ModalComponent from '../../secondary_components/Modal';
 
 const TemplateComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +25,7 @@ const TemplateComponent = () => {
         <CardAtom />
       ))}
 
-      {isModalOpen && <ModalComponents onClose={handleCloseModal} />}
+      {isModalOpen && <ModalComponent onClose={handleCloseModal} />}
     </div>
   );
 };
