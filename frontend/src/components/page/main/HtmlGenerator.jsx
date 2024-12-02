@@ -338,7 +338,7 @@ const HTMLGenerator = () => {
           //     formatOnType: true,
           //   }}
           // />
-          <TemplateComponent />
+          <TemplateComponent id={id} />
         );
       case 'css':
         return (

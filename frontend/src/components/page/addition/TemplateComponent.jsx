@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { CirclePlus } from 'lucide-react';
 import CardAtom from '../../secondary_components/CardAtom';
 import ModalComponent from '../../secondary_components/Modal';
+import useData from '../../../hooks/useData';
 
-const TemplateComponent = () => {
+const TemplateComponent = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+  const { data } = useData(id);
 
   return (
     <div className="w-full min-h-[90vh] max-h-[90vh] p-4 bg-white overflow-y-scroll">
@@ -21,8 +23,8 @@ const TemplateComponent = () => {
         </button>
       </div>
 
-      {Array.from({ length: 3 }).map((_, index) => (
-        <CardAtom key={index} />
+      {data.map((item, index) => (
+        <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
       ))}
 
       {isModalOpen && <ModalComponent onClose={handleCloseModal} />}
