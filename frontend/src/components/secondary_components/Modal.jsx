@@ -4,9 +4,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import ImageComp from './third_components/ImageComp';
 import SelectNext from './next_ui/Select';
+import Container from './third_components/Container';
+import { CirclePlus } from 'lucide-react';
 
 function ModalComponent({ onClose }) {
   const [formData, setFormData] = useState({});
+  const [, setSelectData] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,13 +49,22 @@ function ModalComponent({ onClose }) {
     }));
   };
 
+  const handleSelectChange = (e) => {
+    const { value } = e.target;
+    setSelectData(value);
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-md w-[30rem]">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Create New Components</h2>
+      <div className="bg-white p-6 rounded-md w-[30rem] max-h-[90vh]">
+        <h2 className="flex justify-start gap-2 items-center  text-xl font-semibold text-gray-800 mb-4">
+          <CirclePlus /> Create Components
+        </h2>
         <form onSubmit={handleSubmit}>
-          <SelectNext />
-          <ImageComp formData={formData} handleOnChange={handleOnChange} />
+          <Container>
+            <SelectNext handleOnChange={handleSelectChange} />
+            <ImageComp formData={formData} handleOnChange={handleOnChange} />
+          </Container>
 
           <div className="flex justify-end space-x-2">
             <button

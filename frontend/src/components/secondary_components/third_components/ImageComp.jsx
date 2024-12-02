@@ -1,5 +1,6 @@
 import React from 'react';
 import InputNext from '../next_ui/Input';
+import TextAreaNext from '../next_ui/Textarea';
 
 const ImageComp = ({ formData, handleOnChange }) => {
   return (
@@ -31,6 +32,7 @@ const ImageComp = ({ formData, handleOnChange }) => {
         handleOnChange={handleOnChange}
         formData={formData}
       />
+      <TextAreaNext />
     </div>
   );
 };

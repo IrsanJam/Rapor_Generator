@@ -9,7 +9,7 @@ export default function InputNext({ type, label, handleOnChange, formData }) {
         onChange={handleOnChange}
         type={type}
         label={label}
-        className="w-full p-2 text-black border border-gray-300 rounded-md mb-4"
+        className="w-full p-2 text-black  rounded-md mb-2"
       />
     </div>
   );

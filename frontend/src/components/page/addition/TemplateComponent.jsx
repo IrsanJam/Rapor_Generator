@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { CirclePlus } from 'lucide-react';
 import CardAtom from '../../secondary_components/CardAtom';
 import ModalComponent from '../../secondary_components/Modal';
 
@@ -16,7 +16,7 @@ const TemplateComponent = () => {
           onClick={handleOpenModal}
           className="px-6 py-2 bg-zinc-900 flex justify-center items-center gap-4 text-white font-semibold rounded-md hover:bg-gray-300"
         >
-          <Plus />
+          <CirclePlus />
           Add
         </button>
       </div>

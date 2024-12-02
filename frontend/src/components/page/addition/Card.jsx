@@ -29,8 +29,8 @@ export default function CardComponents({ onCreateTemplateClick, buttonCard }) {
         </button>
 
         {buttonCard.map((card) => (
-          <Card key={card.id} className="m-3">
-            <CardBody className="bg-zinc-200 w-[40%]  rounded-md text-black p-3 flex justify-center items-center gap-3">
+          <Card key={card.id} className="m-3 w-[40%]">
+            <CardBody className="bg-zinc-200 w-full  rounded-md text-black p-3 flex justify-center items-center gap-3">
               <div className="flex justify-between w-full items-center gap-4">
                 <p className="pl-3">{card.name}</p>
                 <div

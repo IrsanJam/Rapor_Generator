@@ -1,13 +1,7 @@
 import { Textarea } from '@nextui-org/react';
 
-export default function TextArea() {
+export default function TextAreaNext() {
   return (
-    <Textarea
-      isRequired
-      label="Description"
-      labelPlacement="outside"
-      placeholder="Enter your description"
-      className="max-w-xs"
-    />
+    <Textarea label="Description" placeholder="Enter your description" className="max-w-full p-2" />
   );
 }
