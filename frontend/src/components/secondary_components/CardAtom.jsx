@@ -15,7 +15,7 @@ export default function CardAtom({ name, id, paramsId }) {
         <div className="flex justify-between px-20 items-center">
           <div>{name}</div>
           <div>
-            <Trash2 className="hover:cursor-pointer" onClick={handleDeleteData} />
+            <Trash2 className="hover:cursor-pointer text-red-500" onClick={handleDeleteData} />
           </div>
         </div>
       </CardBody>

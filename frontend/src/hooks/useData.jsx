@@ -6,14 +6,18 @@ import Swal from 'sweetalert2';
 
 const useData = (id) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(false);
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/data/${id}`);
         setData(response.data.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(true);
       }
     };
     fetchData();
@@ -71,7 +75,31 @@ const useData = (id) => {
     }
   };
 
-  return { data, updateData, deleteData };
+  const createData = async (payload) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/template/data/${id}`,
+        payload
+      );
+      if (response) {
+        Swal.fire({
+          title: 'Done',
+          text: `Data succesfully saved`,
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Update Gagal',
+        text: 'JSX Harus diisi ',
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+      });
+    }
+  };
+
+  return { data, loading, updateData, deleteData, createData };
 };
 
 export default useData;

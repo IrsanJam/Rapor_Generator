@@ -6,11 +6,11 @@ const ProtectedRoute = ({ children }) => {
   const token = Cookies.get('authToken');
   const { pathname } = useLocation();
 
-  const authProtected = ['/404'];
+  const authProtected = ['/404', '/'];
   const protectedByToken = ['/detail/:id', '/main', '/preview/:id'];
 
   if (authProtected.includes(pathname)) {
-    if (token) return <Navigate to={'/'} />;
+    if (token) return <Navigate to={'/main'} />;
   }
   if (protectedByToken.includes(pathname)) {
     if (!token) return <Navigate to="/" />;

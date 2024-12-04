@@ -1,54 +1,25 @@
-// components/CreateTemplateModal.js
-import React, { useState } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useEffect, useState } from 'react';
 import LogoComp from './third_components/LogoComp';
 import SelectNext from './next_ui/Select';
 import Container from './third_components/Container';
 import { CirclePlus } from 'lucide-react';
+import useData from '../../hooks/useData';
 
-function ModalComponent({ onClose }) {
+function ModalComponent({ onClose, id }) {
   const [formData, setFormData] = useState({});
   const [selectData, setSelectData] = useState('');
+  const { createData } = useData(id);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      name: templateName,
-    };
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/template`, data);
-      if (response) {
-        Swal.fire({
-          title: 'Done',
-          text: `Data succesfully saved`,
-          icon: 'success',
-          confirmButtonText: 'OK',
-          confirmButtonColor: 'rgb(3 150 199)',
-        }).then((res) => {
-          window.location.reload();
-        });
-      }
-    } catch (error) {
-      Swal.fire({
-        title: 'Gagal',
-        text: 'Gagal Menyimpan Data',
-        icon: 'warning',
-        confirmButtonColor: '#3085d6',
-      });
-    }
-
-    onClose(); // Tutup modal setelah submit
-  };
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ['key']: selectData,
+    }));
+  }, [selectData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'key' && selectData) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: selectData,
-      }));
-    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -59,6 +30,12 @@ function ModalComponent({ onClose }) {
     const { value } = e.target;
     setSelectData(value);
   };
+
+  const handleSubmit = () => {
+    createData(formData).then(() => onClose());
+  };
+
+  console.log(formData);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

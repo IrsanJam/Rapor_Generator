@@ -5,7 +5,7 @@ export default function InputNext({ type, label, handleOnChange, formData, selec
     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
       <Input
         name={label}
-        value={selectData ? selectData : formData[label]}
+        value={formData[label]}
         onChange={handleOnChange}
         type={type}
         label={label}

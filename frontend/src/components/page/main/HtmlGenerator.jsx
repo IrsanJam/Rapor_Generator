@@ -322,24 +322,7 @@ const HTMLGenerator = () => {
   const renderEditor = () => {
     switch (activeTab) {
       case 'jsx':
-        return (
-          // <Editor
-          //   height={'90vh'}
-          //   defaultLanguage="html"
-          //   value={jsxCode}
-          //   onChange={(value) => setJsxCode(value)}
-          //   theme="vs-dark"
-          //   options={{
-          //     minimap: {
-          //       enabled: false,
-          //     },
-          //     automaticLayout: true,
-          //     formatOnPaste: true,
-          //     formatOnType: true,
-          //   }}
-          // />
-          <TemplateComponent id={id} />
-        );
+        return <TemplateComponent id={id} />;
       case 'css':
         return (
           <div className="relative h-full">
@@ -382,7 +365,7 @@ const HTMLGenerator = () => {
   };
 
   return (
-    <div className="h-screen w-full flex bg-gray-900 text-white">
+    <div className="h-auto w-full flex bg-gray-900 text-white">
       {/* Sidebar */}
       <Layout>
         {/* Tab Navigation */}

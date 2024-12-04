@@ -4,31 +4,43 @@ import { CirclePlus } from 'lucide-react';
 import CardAtom from '../../secondary_components/CardAtom';
 import ModalComponent from '../../secondary_components/Modal';
 import useData from '../../../hooks/useData';
+import NoItem from '../../secondary_components/third_components/NoItem';
+import Loading from '../../secondary_components/third_components/Loading';
 
 const TemplateComponent = ({ id }) => {
+  const { data, loading } = useData(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-  const { data } = useData(id);
 
   return (
-    <div className="w-full min-h-[90vh] max-h-[90vh] p-4 bg-white overflow-y-scroll">
-      <div className="flex justify-end items-center mb-3">
-        <button
-          onClick={handleOpenModal}
-          className="px-6 py-2 bg-zinc-900 flex justify-center items-center gap-4 text-white font-semibold rounded-md hover:bg-gray-300"
-        >
-          <CirclePlus />
-          Add
-        </button>
+    data &&
+    (!loading ? (
+      <div className="flex bg-white h-screen justify-center items-start pt-[20vh]">
+        <Loading />
       </div>
+    ) : (
+      <div className="w-full min-h-[90vh] p-4 h-auto bg-white overflow-y-scroll">
+        <div className="flex justify-end items-center mb-3">
+          <button
+            onClick={handleOpenModal}
+            className="px-6 py-2 bg-zinc-900 flex justify-center items-center gap-4 text-white font-semibold rounded-md hover:bg-gray-300"
+          >
+            <CirclePlus />
+            Add
+          </button>
+        </div>
+        {data.length > 0 ? (
+          data.map((item, index) => (
+            <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
+          ))
+        ) : (
+          <NoItem onCreateTemplateClick={handleOpenModal} />
+        )}
 
-      {data.map((item, index) => (
-        <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
-      ))}
-
-      {isModalOpen && <ModalComponent onClose={handleCloseModal} />}
-    </div>
+        {isModalOpen && <ModalComponent id={id} onClose={handleCloseModal} />}
+      </div>
+    ))
   );
 };
 

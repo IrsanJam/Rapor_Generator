@@ -322,7 +322,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="h-screen w-full flex bg-gray-900 text-white">
+    <div className="h-screen  w-full flex bg-gray-900 text-white">
       {/* Sidebar */}
       <nav className="w-64 bg-gray-900 border-r border-gray-700">
         <div className="p-4 px-2 flex items-center w-full">
