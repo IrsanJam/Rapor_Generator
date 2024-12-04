@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
+import Raport from '../raport/Raport';
 
 const PreviewPage = () => {
   const { id } = useParams();
@@ -74,38 +75,39 @@ const PreviewPage = () => {
   }, [jsonData, jsxCode]);
 
   return (
-    <div className="h-screen w-full flex shadow-lg text-white ">
-      {loading ? (
-        <div className="flex justify-center items-center w-full">
-          <div className="text-gray-500">Loading...</div>
-        </div>
-      ) : (
-        <div className="flex justify-center items-center w-full gap-4">
-          <div className="bg-white rounded-lg overflow-hidden w-full h-full">
-            {/* Render iframe hanya jika jsxCode tersedia */}
-            {jsxCode ? (
-              <iframe
-                srcDoc={preview} // Render HTML di iframe
-                title="Preview"
-                className="w-full h-full bg-white"
-                sandbox="allow-scripts"
-              />
-            ) : (
-              <div className="text-gray-500 flex justify-center items-center h-full">
-                Tidak ada konten untuk ditampilkan.
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+    // <div className="h-screen w-full flex shadow-lg text-white ">
+    //   {loading ? (
+    //     <div className="flex justify-center items-center w-full">
+    //       <div className="text-gray-500">Loading...</div>
+    //     </div>
+    //   ) : (
+    //     <div className="flex justify-center items-center w-full gap-4">
+    //       <div className="bg-white rounded-lg overflow-hidden w-full h-full">
+    //         {/* Render iframe hanya jika jsxCode tersedia */}
+    //         {jsxCode ? (
+    //           <iframe
+    //             srcDoc={preview} // Render HTML di iframe
+    //             title="Preview"
+    //             className="w-full h-full bg-white"
+    //             sandbox="allow-scripts"
+    //           />
+    //         ) : (
+    //           <div className="text-gray-500 flex justify-center items-center h-full">
+    //             Tidak ada konten untuk ditampilkan.
+    //           </div>
+    //         )}
+    //       </div>
+    //     </div>
+    //   )}
 
-      {/* Error Display */}
-      {error && (
-        <div className="p-4 bg-red-500 text-white absolute bottom-0 right-0 m-4 rounded">
-          {error}
-        </div>
-      )}
-    </div>
+    //   {/* Error Display */}
+    //   {error && (
+    //     <div className="p-4 bg-red-500 text-white absolute bottom-0 right-0 m-4 rounded">
+    //       {error}
+    //     </div>
+    //   )}
+    // </div>
+    <Raport />
   );
 };
 
