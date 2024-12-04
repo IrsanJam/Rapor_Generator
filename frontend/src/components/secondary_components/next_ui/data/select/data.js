@@ -1,10 +1,13 @@
 export const list = [
-  { key: 'table', label: 'Table' },
   { key: 'h1', label: 'H1' },
   { key: 'h2', label: 'H2' },
   { key: 'h3', label: 'H3' },
   { key: 'h4', label: 'H4' },
   { key: 'h5', label: 'H5' },
+  { key: 'note', label: 'Note' },
+  { key: 'text_box', label: 'Text Box' },
+  { key: 'paragraph', label: 'Paraghraph' },
+  { key: 'table', label: 'Table' },
   { key: 'logo', label: 'Logo' },
   { key: 'image', label: 'Image' },
   { key: 'break', label: 'Break' },
@@ -15,9 +18,21 @@ export const list = [
   { key: 'refleksi', label: 'Refleksi' },
   { key: 'validation', label: 'Validation' },
   { key: 'transfer_school', label: 'Transfer School' },
-  { key: 'paragraph', label: 'Paraghraph' },
-  { key: 'note', label: 'Note' },
-  { key: 'text_box', label: 'Text Box' },
   { key: 'school_data', label: 'School Data' },
   { key: 'student_data', label: 'Student Data' },
+];
+
+export const alignment = [
+  {
+    key: 'left',
+    label: 'Left',
+  },
+  {
+    key: 'center',
+    label: 'Center',
+  },
+  {
+    key: 'right',
+    label: 'Right',
+  },
 ];

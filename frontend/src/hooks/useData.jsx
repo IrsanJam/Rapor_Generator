@@ -8,20 +8,17 @@ const useData = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(false);
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/data/${id}`);
-        setData(response.data.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(true);
-      }
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    setLoading(false);
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/data/${id}`);
+      setData(response.data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(true);
+    }
+  };
 
   const deleteData = async (paramsId) => {
     Swal.fire({
@@ -99,7 +96,11 @@ const useData = (id) => {
     }
   };
 
-  return { data, loading, updateData, deleteData, createData };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return { data, loading, updateData, deleteData, createData, fetchData };
 };
 
 export default useData;

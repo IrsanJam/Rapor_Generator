@@ -4,6 +4,11 @@ import SelectNext from './next_ui/Select';
 import Container from './third_components/Container';
 import { CirclePlus } from 'lucide-react';
 import useData from '../../hooks/useData';
+import ImageComp from './third_components/ImageComp';
+import BreakComp from './third_components/BreakComp';
+import TextComp from './third_components/TextComp';
+import { list } from '../../components/secondary_components/next_ui/data/select/data';
+import { alignment } from '../../components/secondary_components/next_ui/data/select/data';
 
 function ModalComponent({ onClose, id }) {
   const [formData, setFormData] = useState({});
@@ -35,7 +40,15 @@ function ModalComponent({ onClose, id }) {
     createData(formData).then(() => onClose());
   };
 
-  console.log(formData);
+  const shouldRenderTextComp =
+    selectData === 'h1' ||
+    selectData === 'h2' ||
+    selectData === 'h3' ||
+    selectData === 'h4' ||
+    selectData === 'h5' ||
+    selectData === 'note' ||
+    selectData === 'text_box' ||
+    selectData === 'paragraph';
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -45,9 +58,31 @@ function ModalComponent({ onClose, id }) {
         </h2>
         <form onSubmit={handleSubmit}>
           <Container>
-            <SelectNext handleOnChange={handleSelectChange} />
+            <SelectNext label={'Component'} list={list} handleOnChange={handleSelectChange} />
             {selectData == 'logo' && (
               <LogoComp selectData={selectData} formData={formData} handleOnChange={handleChange} />
+            )}
+            {selectData == 'image' && (
+              <ImageComp
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+            {selectData == 'break' && (
+              <BreakComp
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+            {shouldRenderTextComp && (
+              <TextComp
+                list={alignment}
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
             )}
           </Container>
 

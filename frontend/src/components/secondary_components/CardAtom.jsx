@@ -3,10 +3,11 @@ import { Trash2 } from 'lucide-react';
 import useData from '../../hooks/useData';
 
 export default function CardAtom({ name, id, paramsId }) {
-  const { deleteData } = useData(id);
+  const { deleteData, fetchData } = useData(id);
 
   const handleDeleteData = () => {
     deleteData(paramsId);
+    fetchData();
   };
 
   return (
