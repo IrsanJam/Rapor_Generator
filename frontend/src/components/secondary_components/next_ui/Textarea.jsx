@@ -8,7 +8,7 @@ export default function TextAreaNext({ label, handleOnChange, formData }) {
       onChange={handleOnChange}
       label={label}
       placeholder={`Enter your ${label} `}
-      className="max-w-full p-2"
+      className="max-w-full p-2 text-black"
     />
   );
 }

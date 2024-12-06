@@ -322,10 +322,10 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="h-screen  w-full flex bg-gray-900 text-white">
+    <div className="h-auto pb-5 min-h-screen   w-full flex bg-gray-900 text-white">
       {/* Sidebar */}
       <nav className="w-64 bg-gray-900 border-r border-gray-700">
-        <div className="p-4 px-2 flex items-center w-full">
+        <div className="p-4 px-2 flex items-center fixed top-[-10px] w-full">
           <img
             className=" max-h-[80px] max-w-[80px]"
             src="../../public/icon-preview.png"
@@ -334,7 +334,7 @@ const Layout = ({ children }) => {
           <span className="text-xl font-bold">Report Gen</span>
         </div>
 
-        <div className="px-4 py-2">
+        <div className="px-4 py-2 fixed top-24 w-[15%]">
           <button
             onClick={() => navigate('/main')}
             className={`flex items-center gap-2 px-3 py-2 w-full rounded-md text-gray-300 hover:text-white hover:bg-gray-500`}
@@ -344,7 +344,7 @@ const Layout = ({ children }) => {
           </button>
         </div>
 
-        <button className="absolute bottom-4 left-4 flex items-center gap-2 text-gray-400 hover:text-white">
+        <button className="fixed bottom-4 left-4 flex items-center gap-2 text-gray-400 hover:text-white">
           <LogOut size={20} />
           <LogoutButton />
         </button>

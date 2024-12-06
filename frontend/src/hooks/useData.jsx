@@ -42,6 +42,7 @@ const useData = (id) => {
                 confirmButtonText: 'OK',
                 confirmButtonColor: 'rgb(255 10 10)',
               });
+              window.location.reload();
             });
         }
       }

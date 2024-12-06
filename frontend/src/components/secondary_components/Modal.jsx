@@ -9,6 +9,13 @@ import BreakComp from './third_components/BreakComp';
 import TextComp from './third_components/TextComp';
 import { list } from '../../components/secondary_components/next_ui/data/select/data';
 import { alignment } from '../../components/secondary_components/next_ui/data/select/data';
+import TitleRaportComp from './third_components/TitleRaportComp';
+import TextBoxComp from './third_components/TextBoxComp';
+import MinistryComp from './third_components/MinistryComp';
+import InstructionsComp from './third_components/InstructionsComp';
+import SchoolDataComp from './third_components/SchoolDataComp';
+import StudentData from './third_components/StudentDataComp';
+import PasFotoComp from './third_components/PasFotoComp';
 
 function ModalComponent({ onClose, id }) {
   const [formData, setFormData] = useState({});
@@ -24,7 +31,6 @@ function ModalComponent({ onClose, id }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -47,12 +53,11 @@ function ModalComponent({ onClose, id }) {
     selectData === 'h4' ||
     selectData === 'h5' ||
     selectData === 'note' ||
-    selectData === 'text_box' ||
     selectData === 'paragraph';
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-md w-[30rem] max-h-[90vh]">
+      <div className="bg-white p-6 rounded-md w-[30rem] max-h-[90vh] overflow-y-scroll">
         <h2 className="flex justify-start gap-2 items-center  text-xl font-semibold text-gray-800 mb-4">
           <CirclePlus size={20} /> Create Components
         </h2>
@@ -60,7 +65,12 @@ function ModalComponent({ onClose, id }) {
           <Container>
             <SelectNext label={'Component'} list={list} handleOnChange={handleSelectChange} />
             {selectData == 'logo' && (
-              <LogoComp selectData={selectData} formData={formData} handleOnChange={handleChange} />
+              <LogoComp
+                selectData={selectData}
+                list={alignment}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
             )}
             {selectData == 'image' && (
               <ImageComp
@@ -79,6 +89,64 @@ function ModalComponent({ onClose, id }) {
             {shouldRenderTextComp && (
               <TextComp
                 list={alignment}
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'title_raport' && (
+              <TitleRaportComp
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'text_box' && (
+              <TextBoxComp
+                list={alignment}
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'ministry' && (
+              <MinistryComp
+                list={alignment}
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'instruction' && (
+              <InstructionsComp
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'school_data' && (
+              <SchoolDataComp
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'student_data' && (
+              <StudentData
+                selectData={selectData}
+                formData={formData}
+                handleOnChange={handleChange}
+              />
+            )}
+
+            {selectData == 'pas_photo' && (
+              <PasFotoComp
                 selectData={selectData}
                 formData={formData}
                 handleOnChange={handleChange}

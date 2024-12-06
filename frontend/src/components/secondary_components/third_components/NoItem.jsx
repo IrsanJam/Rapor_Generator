@@ -18,7 +18,7 @@ const NoItem = ({ onCreateTemplateClick }) => {
         </div>
 
         <h1 className="text-2xl font-semibold text-gray-800 mb-4">No templates yet</h1>
-        <p className="text-gray-600 mb-6">Create a template to get started.</p>
+        <p className="text-gray-600 mb-6 text-center">Create a template to get started.</p>
         <button
           onClick={onCreateTemplateClick}
           className="px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-300"

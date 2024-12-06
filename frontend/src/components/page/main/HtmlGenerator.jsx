@@ -369,7 +369,7 @@ const HTMLGenerator = () => {
       {/* Sidebar */}
       <Layout>
         {/* Tab Navigation */}
-        <div className="flex items-center gap-2 p-4 bg-gray-800">
+        <div className="flex items-center relative z-[999] gap-2 p-4 bg-gray-800">
           <button
             onClick={() => setActiveTab('jsx')}
             className={`flex items-center gap-2 px-4 py-2 rounded ${
@@ -426,7 +426,7 @@ const HTMLGenerator = () => {
         {/* Content Area */}
         <div className="flex-1 grid grid-cols-1 gap-4">
           {/* Editor */}
-          <div className="bg-gray-800  overflow-hidden">
+          <div className="bg-gray-800">
             <div>{renderEditor()}</div>
           </div>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import InputNext from '../next_ui/Input';
+import TextAreaNext from '../next_ui/Textarea';
 import SelectNext from '../next_ui/Select';
-
-const LogoComp = ({ formData, handleOnChange, selectData, list }) => {
+const InstructionsComp = ({ formData, handleOnChange, selectData }) => {
   return (
     <div>
       <InputNext
@@ -13,19 +13,20 @@ const LogoComp = ({ formData, handleOnChange, selectData, list }) => {
         formData={formData}
       />
 
-      <SelectNext label={'alignment'} handleOnChange={handleOnChange} list={list} />
-
       <InputNext
         type={'text'}
-        label={'value'}
+        label={'title'}
         handleOnChange={handleOnChange}
+        selectData={selectData}
         formData={formData}
       />
+      <TextAreaNext label={'head'} handleOnChange={handleOnChange} formData={formData} />
+      <TextAreaNext label={'value'} handleOnChange={handleOnChange} formData={formData} />
     </div>
   );
 };
 
-export default LogoComp;
+export default InstructionsComp;
 
 {
   /* <input

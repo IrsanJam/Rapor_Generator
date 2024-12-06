@@ -20,7 +20,7 @@ const TemplateComponent = ({ id }) => {
         <Loading />
       </div>
     ) : (
-      <div className="w-full min-h-[90vh] p-4 h-auto bg-white overflow-y-scroll">
+      <div className="w-full min-h-screen h-auto p-4  bg-white ">
         <div className="flex justify-end items-center mb-3">
           <button
             onClick={handleOpenModal}

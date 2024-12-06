@@ -12,6 +12,7 @@ export const list = [
   { key: 'image', label: 'Image' },
   { key: 'break', label: 'Break' },
   { key: 'list', label: 'Text List' },
+  { key: 'title_raport', label: 'Title Raport' },
   { key: 'table_intra', label: 'Table Intrakulikuler' },
   { key: 'table_qurani', label: 'Table Qurani' },
   { key: 'table_digital', label: 'Table Digital' },
@@ -20,6 +21,10 @@ export const list = [
   { key: 'transfer_school', label: 'Transfer School' },
   { key: 'school_data', label: 'School Data' },
   { key: 'student_data', label: 'Student Data' },
+  { key: 'ministry', label: 'Ministry' },
+  { key: 'instruction', label: 'Instruction' },
+  { key: 'pas_photo_ttd', label: 'pas photo dan tanda tangan' },
+  { key: 'pas_photo', label: 'pas photo' },
 ];
 
 export const alignment = [

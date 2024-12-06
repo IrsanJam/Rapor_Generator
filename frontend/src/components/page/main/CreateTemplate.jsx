@@ -34,7 +34,7 @@ function CreateTemplate() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen overflow-y-auto bg-gray-100">
       {buttonCard.length === 0 ? (
         <NoTemplates onCreateTemplateClick={handleOpenModal} />
       ) : (
