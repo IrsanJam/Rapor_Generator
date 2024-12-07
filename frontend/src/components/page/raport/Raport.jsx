@@ -22,7 +22,7 @@ const Raport = () => {
                   className={index === currentSubpageContent.length ? 'page' : 'page_background'}
                   key={`page-${index}`}
                 >
-                  <div className="subpage">{currentSubpageContent}</div>
+                  <div className="subpage ">{currentSubpageContent}</div>
                 </div>
               );
               currentPageContent = []; // Reset for the next page
@@ -50,6 +50,15 @@ const Raport = () => {
               // When adding an h1, we can treat it as content for the current page
               currentSubpageContent.push(
                 <p className={`title text-${item.alignment}`} key={index}>
+                  {item.value}
+                </p>
+              );
+              break;
+
+            case 'h2':
+              // When adding an h2, we can treat it as content for the current page
+              currentSubpageContent.push(
+                <p className={`text-[18px] text-${item.alignment}`} key={index}>
                   {item.value}
                 </p>
               );
@@ -95,7 +104,7 @@ const Raport = () => {
                   <div className="title-container">
                     <p className="title">{item.title}</p>
                   </div>
-                  <div id="petunjukPengisian" className="mt-[44px] text-justify">
+                  <div id="petunjukPengisian" className="mt-[44px] text-justify text-[13px]">
                     <p>{item.head}</p>
                     <ol className="list-decimal pl-16 mt-5">
                       {instructions.map((instruction, idx) => (
@@ -190,8 +199,8 @@ const Raport = () => {
                   <div className="title-container">
                     <p className="title">Keterangan tentang Diri Peserta Didik</p>
                   </div>
-                  <div id="dataPesertaDidik" className="mt-[44px] mx-auto">
-                    <table className="student-data">
+                  <div id="dataPesertaDidik" className="mt-[44px]">
+                    <table className="student-data ml-[30px]">
                       <tr>
                         <td>1.</td>
                         <td>Nama Peserta Didik (Lengkap)</td>
@@ -274,7 +283,7 @@ const Raport = () => {
               currentSubpageContent.push(
                 <div id="tanda-tangan-container" className="mt-[33px]">
                   <div id="tandaTangan">
-                    <table className="tanda-tangan">
+                    <table className="tanda-tangan text-[11px]">
                       <tr>
                         <td rowSpan="4">
                           <table className="pas-foto">
@@ -328,6 +337,626 @@ const Raport = () => {
                   </div>
                 </div>
               );
+              break;
+
+            case 'student_data_head_tk':
+              currentSubpageContent.push(
+                <div id="dataSiswa" className="text-[11px]">
+                  <table>
+                    <tr>
+                      <td className="w-[15%]">Nama Peserta Didik</td>
+                      <td className="w-[2%]">:</td>
+                      <td className="w-[40%]">{item.name}</td>
+                      <td className="w-[15%]">Fase/Kelas</td>
+                      <td className="w-[2%]">:</td>
+                      <td className="w-[24%]">{item.class}</td>
+                    </tr>
+                    <tr>
+                      <td>NIPD</td>
+                      <td>:</td>
+                      <td>{item.nipd}</td>
+                      <td>Semester</td>
+                      <td>:</td>
+                      <td>{item.semester}</td>
+                    </tr>
+                    <tr>
+                      <td colSpan="3">&nbsp;</td>
+                      <td>Tahun Pelajaran</td>
+                      <td>:</td>
+                      <td>{item.academic_year}</td>
+                    </tr>
+                  </table>
+                </div>
+              );
+              break;
+
+            case 'student_data_head':
+              currentSubpageContent.push(
+                <div id="" className="text-[11px]">
+                  <table>
+                    <tr>
+                      <td className="w-[15%]">Nama Peserta Didik</td>
+                      <td className="w-[2%]">:</td>
+                      <td className="w-[40%]">{item.name}</td>
+                      <td className="w-[15%]">Fase/Kelas</td>
+                      <td className="w-[2%]">:</td>
+                      <td className="w-[24%]">{item.class}</td>
+                    </tr>
+                    <tr>
+                      <td>NISN</td>
+                      <td>:</td>
+                      <td>{item.nisn}</td>
+                      <td>Semester</td>
+                      <td>:</td>
+                      <td>{item.semester}</td>
+                    </tr>
+
+                    <tr>
+                      <td>NIPD</td>
+                      <td>:</td>
+                      <td>{item.nipd}</td>
+                      <td>Tahun Pelajaran</td>
+                      <td>:</td>
+                      <td>{item.academic_year ? item.academic_year : ''}</td>
+                    </tr>
+                  </table>
+                </div>
+              );
+
+              break;
+            case 'table_intra':
+              currentSubpageContent.push(
+                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+                  <p className="komponen-rapor uppercase">INTRAKULIKULER</p>
+                  <div className="m-t-16 m-b-16">
+                    <table className="table-border page-break-auto">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          {(item.headers || []).map((header, index) => (
+                            <th key={index} className={header.width || ''}>
+                              {header.label || 'Header Tidak Tersedia'}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(item.data || []).length > 0 ? (
+                          item.data.map((row, index) => (
+                            <React.Fragment key={index}>
+                              <tr>
+                                <td
+                                  className="text-center align-middle"
+                                  rowSpan={row.deskripsi?.length || 1}
+                                >
+                                  {index + 1}
+                                </td>
+                                <td
+                                  className="align-middle no-bold"
+                                  rowSpan={row.deskripsi?.length || 1}
+                                >
+                                  {row.mataPelajaran || 'Mata Pelajaran Tidak Tersedia'}
+                                </td>
+                                <td
+                                  className="align-middle no-bold text-center"
+                                  rowSpan={row.deskripsi?.length || 1}
+                                >
+                                  {row.nilaiAkhir !== undefined ? row.nilaiAkhir : '-'}
+                                </td>
+                                <td className="align-middle no-bold">
+                                  {row.deskripsi?.[0] || 'Deskripsi Tidak Tersedia'}
+                                </td>
+                              </tr>
+                              {row.deskripsi?.slice(1).map((desc, i) => (
+                                <tr key={`${index}-${i}`}>
+                                  <td className="align-middle no-bold">{desc}</td>
+                                </tr>
+                              ))}
+                            </React.Fragment>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={item.headers?.length || 1} className="text-center">
+                              Data Tidak Tersedia
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'table_qurani':
+              currentSubpageContent.push(
+                <div id="islami-dan-qurani" className="mt-22 avoid-break">
+                  <p className="komponen-rapor">ISLAMI DAN QURANI</p>
+                  <div className="mt-4 mb-8">
+                    <table className="table-border">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          <th className="w-1/12 border border-gray-300">No</th>
+                          <th className="w-3/12 border border-gray-300" colSpan="2">
+                            Elemen
+                          </th>
+                          <th className="w-8/12 border border-gray-300">Deskripsi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* Tilawah Section */}
+                        <tr>
+                          <td className="text-center align-top border border-gray-300" rowSpan={4}>
+                            1
+                          </td>
+                          <td colSpan="3" className="border border-gray-300 font-bold">
+                            {item.tilawah.title}
+                          </td>
+                        </tr>
+                        {item.tilawah.section.map((section) => (
+                          <tr key={section.id}>
+                            <td className="border border-gray-300">{section.id}</td>
+                            <td className="border border-gray-300">{section.title}</td>
+                            <td className="border border-gray-300">{section.description}</td>
+                          </tr>
+                        ))}
+
+                        {/* Tahfidz Section */}
+                        <tr>
+                          <td className="text-center align-top border border-gray-300" rowSpan={4}>
+                            2
+                          </td>
+                          <td colSpan="3" className="border border-gray-300 font-bold">
+                            {item.tahfidz.title}
+                          </td>
+                        </tr>
+                        {item.tahfidz.section.map((section, index) => (
+                          <tr key={section.id}>
+                            <td className="border border-gray-300">{section.id}</td>
+                            <td className="border border-gray-300">{section.title}</td>
+                            {/* RowSpan Description: Ditambahkan sekali saja */}
+                            {index === 0 && (
+                              <td
+                                className="border border-gray-300"
+                                rowSpan={item.tahfidz.section.length}
+                              >
+                                {item.tahfidz.description}
+                              </td>
+                            )}
+                          </tr>
+                        ))}
+
+                        {/* Akhlak Mulia Section */}
+                        <tr>
+                          <td colSpan="4" className="font-bold">
+                            {item.akhlak_mulia.title}
+                          </td>
+                        </tr>
+                        {item.akhlak_mulia.section.map((section, index) => (
+                          <tr key={index}>
+                            <td className="border border-gray-300">{index + 1}</td>
+                            <td colSpan="2" className="border border-gray-300">
+                              {section.title}
+                            </td>
+                            <td className="border border-gray-300">{section.description}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'table':
+              currentSubpageContent.push(
+                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+                  <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
+                  <div className="m-t-16 m-b-16">
+                    <table className="table-border page-break-auto">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          {(item.headers || []).map((header, index) => (
+                            <th key={index} className={header.width || ''}>
+                              {header.label || 'Header Tidak Tersedia'}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(item.data || []).length > 0 ? (
+                          item.data.map((row, rowIndex) => (
+                            <tr key={rowIndex}>
+                              {(item.headers || []).map((header, colIndex) => (
+                                <td key={colIndex} className="align-middle no-bold">
+                                  {row[header.key] !== undefined ? row[header.key] : '-'}
+                                </td>
+                              ))}
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={item.headers?.length || 1} className="text-center">
+                              Data Tidak Tersedia
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'table_digital':
+              currentSubpageContent.push(
+                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+                  <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
+                  <div className="m-t-16 m-b-16">
+                    <table className="table-border page-break-auto">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          {(item.headers || []).map((header, index) => (
+                            <th key={index} className={header.width || ''}>
+                              {header.label || 'Header Tidak Tersedia'}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(item.data || []).length > 0 ? (
+                          item.data.map((row, index) => (
+                            <React.Fragment key={index}>
+                              <tr>
+                                <td
+                                  className="text-center align-middle"
+                                  rowSpan={row.deskripsi?.length || 1}
+                                >
+                                  {index + 1}
+                                </td>
+                                <td className="align-middle no-bold w-[30%]">
+                                  {row.learning_obj || ''}
+                                </td>
+                                <td className=" italic align-middle no-bold">
+                                  {row.deskripsi?.[0] || 'Deskripsi Tidak Tersedia'}
+                                </td>
+                              </tr>
+                              {row.deskripsi?.slice(1).map((desc, i) => (
+                                <tr key={`${index}-${i}`}>
+                                  <td className="align-middle no-bold ">{desc}</td>
+                                </tr>
+                              ))}
+                            </React.Fragment>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={item.headers?.length || 1} className="text-center">
+                              Data Tidak Tersedia
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'table_refleksi':
+              currentSubpageContent.push(
+                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+                  <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
+                  <div className="m-t-16 m-b-16">
+                    <table className="table-border page-break-auto">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          {(item.headers || []).map((header, index) => (
+                            <th key={index} className={`${header.width} italic || ''`}>
+                              {header.label || 'Header Tidak Tersedia'}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(item.data || []).length > 0 ? (
+                          item.data.map((row, index) => (
+                            <React.Fragment key={index}>
+                              <tr>
+                                <td
+                                  className="text-center align-middle"
+                                  rowSpan={row.deskripsi?.length || 1}
+                                >
+                                  {index + 1}
+                                </td>
+                                <td className="align-middle no-bold w-[30%]">
+                                  {row.softskill || ''}
+                                </td>
+                                <td className=" italic align-middle no-bold">
+                                  {row.deskripsi?.[0] || 'Deskripsi Tidak Tersedia'}
+                                </td>
+                              </tr>
+                              {row.deskripsi?.slice(1).map((desc, i) => (
+                                <tr key={`${index}-${i}`}>
+                                  <td className="align-middle no-bold ">{desc}</td>
+                                </tr>
+                              ))}
+                            </React.Fragment>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={item.headers?.length || 1} className="text-center">
+                              Data Tidak Tersedia
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'table_kehadiran':
+              currentSubpageContent.push(
+                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+                  <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
+                  <div className="m-t-16 m-b-16">
+                    <table className="table-border page-break-auto w-full">
+                      <thead>
+                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                          <th key={index} colSpan={2} className="w-full">
+                            Kehadiran
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(item.data || []).length > 0 ? (
+                          item.data.map((row, index) => (
+                            <React.Fragment key={index}>
+                              <tr>
+                                <td className="align-middle no-bold w-[45%] text-center">
+                                  {row.status || ''}
+                                </td>
+                                <td className="  align-middle no-bold w-[45%] text-center ">
+                                  {row.deskripsi?.[0] || 'Deskripsi Tidak Tersedia'}
+                                </td>
+                              </tr>
+                              {row.deskripsi?.slice(1).map((desc, i) => (
+                                <tr key={`${index}-${i}`}>
+                                  <td className="align-middle no-bold ">{desc}</td>
+                                </tr>
+                              ))}
+                            </React.Fragment>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={item.headers?.length || 1} className="text-center">
+                              Data Tidak Tersedia
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+            case 'refleksi':
+              currentSubpageContent.push(
+                <div id="refleksiWaliKelas" className="mt-6 ">
+                  <p className="komponen-rapor uppercase">REFLEKSI WALI KELAS</p>
+                  <div className="mt-2 mb-4 w-full">
+                    <table className="table-border table-catatan w-[100%]">
+                      <tbody>
+                        <tr>
+                          <td>{item.value}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'validation':
+              currentSubpageContent.push(
+                <div className="mt-[33px]">
+                  <table className="unvalidated">
+                    <tr>
+                      <td className="uppercase">Dokumen rapor ini belum divalidasi</td>
+                    </tr>
+                  </table>
+                </div>
+              );
+              break;
+
+            case 'pindah_sekolah1':
+              currentSubpageContent.push(
+                <div>
+                  <div>
+                    <p className="uppercase text-lg font-bold text-center">
+                      Keterangan Pindah Sekolah
+                    </p>
+                    <p className="text-sm font-bold text-center">
+                      Nama Peserta Didik: {Array.from({ length: 46 }, () => '.').join('')}
+                    </p>
+                    <div id="keluar" className="mt-6">
+                      <div className="mt-4 mb-4">
+                        <table className="table-border w-full">
+                          <thead>
+                            <tr>
+                              <th className="uppercase text-center" colSpan={4}>
+                                Keluar
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="text-center w-[15%]">Tanggal</td>
+                              <td className="text-center w-[15%]">Kelas yang Ditinggalkan</td>
+                              <td className="text-center w-[35%]">
+                                Sebab-Sebab Keluar atau Atas Permintaan (Tertulis)
+                              </td>
+                              <td className="text-center w-[35%]">
+                                Tanda Tangan Kepala Sekolah, Stempel Sekolah, dan Tanda Tangan Orang
+                                Tua/Wali
+                              </td>
+                            </tr>
+                            {Array.from({ length: 3 }, (_, j) => (
+                              <React.Fragment key={j}>
+                                <tr>
+                                  <td className="text-center" rowSpan={8}>
+                                    &nbsp;
+                                  </td>
+                                  <td className="text-center" rowSpan={8}>
+                                    &nbsp;
+                                  </td>
+                                  <td className="" rowSpan={8}>
+                                    &nbsp;
+                                  </td>
+                                  <td className="no-border-y pt-4">
+                                    {Array.from({ length: 26 }, () => '.').join('')},{' '}
+                                    {Array.from({ length: 36 }, () => '.').join('')}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y">Kepala Sekolah,</td>
+                                </tr>
+                                <tr>
+                                  <td className="ttd no-border-y">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y">
+                                    {Array.from({ length: 66 }, () => '.').join('')}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y">NIP</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y">Orang Tua/Wali,</td>
+                                </tr>
+                                <tr>
+                                  <td className="ttd no-border-y">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-top">
+                                    {Array.from({ length: 66 }, () => '.').join('')}
+                                  </td>
+                                </tr>
+                              </React.Fragment>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'pindah_sekolah2':
+              currentSubpageContent.push(
+                <div>
+                  <div>
+                    <p className="uppercase text-2xl font-bold text-center">
+                      Keterangan Pindah Sekolah
+                    </p>
+                    <p className="text-sm font-bold text-center">
+                      Nama Peserta Didik:
+                      {Array.from({ length: 46 }, (_, i) => '.').join('')}
+                    </p>
+                    <div id="keluar" className="mt-5">
+                      <div className="mt-4 mb-4">
+                        <table className="table-border w-full">
+                          <thead>
+                            <tr>
+                              <th className=" w-[5%]">No</th>
+                              <th className="uppercase w-[95%]  text-center" colSpan="3">
+                                Masuk
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {Array.from({ length: 3 }, (_, j) => (
+                              <React.Fragment key={j}>
+                                <tr>
+                                  <td className="no-border-y text-center py-4">1</td>
+                                  <td className="no-border-y py-4 w-[25%]">Nama Peserta Didik</td>
+                                  <td className="no-border-y text-center py-4 w-[38%]">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y py-4 w-[32%]">
+                                    {Array.from({ length: 26 }, (_, i) => '.').join('')},{' '}
+                                    {Array.from({ length: 36 }, (_, i) => '.').join('')}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y text-center">2</td>
+                                  <td className="no-border-y">Nomor Induk</td>
+                                  <td className="no-border-y text-center">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y">Kepala Sekolah,</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y text-center">3</td>
+                                  <td className="no-border-y">Nama Sekolah</td>
+                                  <td className="no-border-y text-center">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y text-center">4</td>
+                                  <td className="no-border-y">Masuk di Sekolah Ini:</td>
+                                  <td className="no-border-y text-center">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y text-center">&nbsp;</td>
+                                  <td className="no-border-y">a. Tanggal</td>
+                                  <td className="no-border-y text-center">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-y text-center">&nbsp;</td>
+                                  <td className="no-border-y">b. Di Kelas</td>
+                                  <td className="no-border-y text-center">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-y">
+                                    {Array.from({ length: 66 }, (_, i) => '.').join('')}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="no-border-top text-center pb-4">5</td>
+                                  <td className="no-border-top pb-4">Tahun Pelajaran</td>
+                                  <td className="no-border-top text-center pb-4">
+                                    {Array.from({ length: 71 }, (_, i) => '.').join('')}
+                                  </td>
+                                  <td className="no-border-top pb-4">NIP</td>
+                                </tr>
+                              </React.Fragment>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+              break;
+
+            case 'space_top':
+              currentSubpageContent.push(<div className="mt-[33px]"></div>);
+              break;
+
+            case 'space_bottom':
+              currentSubpageContent.push(<div className="mb-[33px]"></div>);
               break;
 
             default:

@@ -361,6 +361,139 @@ const Test = () => {
                 </table>
               </div>
             </div>
+
+            <div id="islami-dan-qurani" className="mt-22 avoid-break">
+              <p className="komponen-rapor">ISLAMI DAN QURANI</p>
+              <div className="mt-4 mb-8">
+                <table className="table-border">
+                  <thead>
+                    <tr style={{ backgroundColor: '#C6E0B4' }}>
+                      <th className="w-1/12 border border-gray-300">No</th>
+                      <th className="w-3/12 border border-gray-300" colSpan="2">
+                        Elemen
+                      </th>
+                      <th className="w-8/12 border border-gray-300">Deskripsi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Tarbia Qurania Section */}
+                    <tr>
+                      <td colSpan="4" className="font-bold">
+                        Tarbia Islamia Asasia
+                      </td>
+                    </tr>
+
+                    {/* Tilawah Section */}
+                    <tr>
+                      <td className="text-center align-top border border-gray-300" rowSpan="4">
+                        1
+                      </td>
+                      <td colSpan="3" className="border border-gray-300 font-bold">
+                        Tilawah
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">a.</td>
+                      <td className="border border-gray-300">Tajwid (Hukum Bacaan)</td>
+                      <td className="border border-gray-300">
+                        Deskripsi Tajwid untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">b.</td>
+                      <td className="border border-gray-300">Tahsin (Kelancaran Bacaan)</td>
+                      <td className="border border-gray-300">
+                        Deskripsi Tahsin untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">c.</td>
+                      <td className="border border-gray-300">Khataman (Ketuntasan Bacaan)</td>
+                      <td className="border border-gray-300">
+                        Deskripsi Khataman untuk [Nama Siswa]
+                      </td>
+                    </tr>
+
+                    {/* Tahfidz Section */}
+                    <tr>
+                      <td className="text-center align-top border border-gray-300" rowSpan="3">
+                        2
+                      </td>
+                      <td colSpan="3" className="border border-gray-300 font-bold">
+                        Tahfidz
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">a</td>
+                      <td className="border border-gray-300">Surah Al-Fatihah (1)</td>
+                      <td className="border border-gray-300" rowSpan="2">
+                        Deskripsi Tahfidz untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">b</td>
+                      <td className="border border-gray-300">Surah Al-Baqarah (286)</td>
+                    </tr>
+
+                    {/* Tadabur Section */}
+                    <tr>
+                      <td className="text-center align-top border border-gray-300" rowSpan="3">
+                        3
+                      </td>
+                      <td colSpan="3" className="border border-gray-300 font-bold">
+                        Tadabur
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">a</td>
+                      <td className="border border-gray-300">Surah Al-Kahf (110)</td>
+                      <td className="border border-gray-300" rowSpan="2">
+                        Deskripsi Tadabur untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">b</td>
+                      <td className="border border-gray-300">Surah Al-Mulk (30)</td>
+                    </tr>
+
+                    {/* Tarbia Khuluqia Section */}
+                    <tr>
+                      <td colSpan="4" className="font-bold">
+                        Akhlak Mulia
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">1</td>
+                      <td colSpan="2" className="border border-gray-300">
+                        Kejujuran
+                      </td>
+                      <td className="border border-gray-300">
+                        Deskripsi Kejujuran untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">2</td>
+                      <td colSpan="2" className="border border-gray-300">
+                        Kedisiplinan
+                      </td>
+                      <td className="border border-gray-300">
+                        Deskripsi Kedisiplinan untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300">3</td>
+                      <td colSpan="2" className="border border-gray-300">
+                        Tanggung Jawab
+                      </td>
+                      <td className="border border-gray-300">
+                        Deskripsi Tanggung Jawab untuk [Nama Siswa]
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div id="kompetensi" className="text-[22px] avoid-break">
               <p className="komponen-rapor">KOMPETENSI</p>
               <div className="m-t-4 m-b-8">

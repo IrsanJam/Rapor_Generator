@@ -6546,7 +6546,7 @@ table.table-border td.no-border-bottom {
 }
 
 table.table-catatan {
-  width: 75%;
+  width: 100%;
   min-height: 1.5cm;
 }
 
@@ -6668,4 +6668,78 @@ table.table-keputusan tr td {
 #petunjukPengisian p {
   text-align: justify;
   line-height: 1.5;
+}
+
+table.unvalidated {
+  width: 100%;
+}
+
+table.unvalidated tr td {
+  padding: 12px;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  background-color: red;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr td {
+  padding: 5px 0;
+}
+
+table.table-border td,
+table.table-border th {
+  border: 1px solid black;
+}
+
+table.table-border tr td,
+table.table-border tr th {
+  padding: 5px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+table.table-border tr th {
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+table.table-border td.no-border-y {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+table.table-border td.no-border-top {
+  border-top: 0;
+}
+
+table.table-border td.no-border-bottom {
+  border-bottom: 0;
+}
+
+table.unit-data {
+  width: auto;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.unit-data tr td {
+  padding: 5px 5px;
+  font-size: 12px;
+}
+
+table.student-data {
+  width: auto;
+  white-space: nowrap;
+}
+
+table.student-data tr td {
+  padding: 5px 5px;
+  font-size: 12px;
 }

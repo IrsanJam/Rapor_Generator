@@ -3,6 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 import Raport from '../raport/Raport';
+import Test from '../raport/item/Test';
 
 const PreviewPage = () => {
   const { id } = useParams();
@@ -107,6 +108,9 @@ const PreviewPage = () => {
     //     </div>
     //   )}
     // </div>
+
+    // <Test />
+
     <Raport />
   );
 };
