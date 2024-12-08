@@ -23,7 +23,7 @@ export default function CardComponents({ onCreateTemplateClick, buttonCard }) {
       <div className="p-3">
         <button
           onClick={onCreateTemplateClick}
-          className="px-6 m-3  p-4 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-300"
+          className="px-6 m-3  p-4 bg-gray-500 text-white relative z-[9999] font-semibold rounded-md hover:bg-gray-300"
         >
           Create a Template
         </button>

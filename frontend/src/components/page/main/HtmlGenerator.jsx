@@ -18,6 +18,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from '@monaco-editor/react';
 import TemplateComponent from '../addition/TemplateComponent';
+import Raport from '../raport/Raport';
 
 const HTMLGenerator = () => {
   const [activeTab, setActiveTab] = useState('jsx');
@@ -117,6 +118,10 @@ const HTMLGenerator = () => {
   //   setPreview(html);
   // };
 
+  const JI = () => {
+    return <p>msmsms</p>;
+  };
+
   const generatePreview = () => {
     if (error || !parsedData) {
       setPreview('<p style="color: red; text-align: center;">Invalid or Empty JSON Data</p>');
@@ -147,7 +152,7 @@ const HTMLGenerator = () => {
           const App = () => (
               ${escapedJsxCode}
           );
-          ReactDOM.render(<App />, document.getElementById('root'));
+          ReactDOM.render(<App/>)}, document.getElementById('root'));
           </script>
       </body>
       </html>
@@ -365,7 +370,7 @@ const HTMLGenerator = () => {
   };
 
   return (
-    <div className="h-auto w-full flex bg-gray-900 text-white">
+    <div className=" w-full flex bg-gray-900 text-white">
       {/* Sidebar */}
       <Layout>
         {/* Tab Navigation */}
@@ -424,9 +429,9 @@ const HTMLGenerator = () => {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 grid grid-cols-1 gap-4">
+        <div className="flex justify-center ">
           {/* Editor */}
-          <div className="bg-gray-800">
+          <div className="bg-gray-800 flex-1 relative top-0">
             <div>{renderEditor()}</div>
           </div>
 
@@ -440,6 +445,9 @@ const HTMLGenerator = () => {
               sandbox="allow-scripts"
             />
           </div> */}
+          <div className="flex-1 text-black">
+            <Raport />
+          </div>
         </div>
 
         {/* Error Display */}

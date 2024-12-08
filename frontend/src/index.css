@@ -2,247 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.a4-page {
-  width: 210mm; /* Lebar A4 */
-  height: 297mm; /* Tinggi A4 */
-  margin: 0 auto; /* Centering halaman */
-  font-family: Arial, sans-serif;
-  box-sizing: border-box;
-  overflow: hidden; /* Menghindari overflow jika ada konten lebih */
-}
-
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #fafdfb;
-}
-
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.page {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 0;
-  margin: 16mm auto;
-  /*border: 1px #D3D3D3 solid;
-  border-radius: 5px;*/
-  background: white;
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-}
-
-.page_background {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 0;
-  margin: 16mm auto;
-  /*border: 1px #D3D3D3 solid;
-  border-radius: 5px;*/
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  background-image: url(https://res.cloudinary.com/dmuggkwp1/image/upload/v1733367055/Desain_tanpa_judul_4_rnzq4e.png);
-  background-position: center; /* This will center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-size: cover; /* Make the background cover the entire div */
-}
-
-.subpage {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  margin: 1mm;
-}
-
-p {
-  display: block;
-  margin: 0;
-  font: 12pt;
-  color: #000;
-  line-height: 1.24;
-  text-align: left;
-}
-
-@page {
-  size: A4;
-  margin: 0;
-}
-
-@media all {
-  .page-break {
-    display: none;
-  }
-}
-
-@media print {
-  html,
-  body {
-    width: 210mm;
-    min-height: 297mm;
-    /* background-color: #fff; */
-    -webkit-print-color-adjust: exact;
-  }
-
-  table {
-    break-inside: avoid;
-  }
-
-  .page {
-    margin: 0;
-    border: initial;
-    border-radius: initial;
-    width: initial;
-    min-height: 297mm;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    background: initial;
-    page-break-after: always;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .page-break {
-    display: block;
-    page-break-before: always;
-  }
-
-  table.page-break-auto {
-    page-break-inside: auto;
-  }
-
-  table.page-break-auto tr {
-    page-break-inside: avoid;
-    page-break-after: auto;
-  }
-  table.testung tr,
-  table.testung th {
-    page-break-inside: avoid;
-    page-break-after: auto;
-  }
-  .testingriski {
-    page-break-inside: avoid;
-    page-break-after: auto;
-  }
-}
-
-/*[ FONT ]
-///////////////////////////////////////////////////////////
-*/
-/* ------------------------------------ */
-.fs-11 {
-  font-size: 11px;
-}
-.fs-12 {
-  font-size: 12px;
-}
-.fs-13 {
-  font-size: 13px;
-}
-.fs-14 {
-  font-size: 14px;
-}
-.fs-15 {
-  font-size: 15px;
-}
-.fs-16 {
-  font-size: 16px;
-}
-.fs-17 {
-  font-size: 17px;
-}
-.fs-18 {
-  font-size: 18px;
-}
-.fs-19 {
-  font-size: 19px;
-}
-.fs-20 {
-  font-size: 20px;
-}
-.fs-21 {
-  font-size: 21px;
-}
-.fs-22 {
-  font-size: 22px;
-}
-
-/* ------------------------------------ */
-.font-weight-light {
-  font-weight: 300 !important;
-}
-.font-weight-lighter {
-  font-weight: lighter !important;
-}
-.font-weight-normal {
-  font-weight: 400 !important;
-}
-.font-weight-bold {
-  font-weight: 700 !important;
-}
-.font-weight-bolder {
-  font-weight: bolder !important;
-}
-
-/* ------------------------------------ */
-.font-italic {
-  font-style: italic !important;
-}
-
-/*[ TEXT ]
-///////////////////////////////////////////////////////////
-*/
-/* ------------------------------------ */
-.text-white {
-  color: white;
-}
-.text-black {
-  color: black;
-}
-
-.text-primary {
-  color: #6777ef;
-}
-.text-secondary {
-  color: #757575;
-}
-.text-success {
-  color: #66bb6a;
-}
-.text-warning {
-  color: #ffa426;
-}
-.text-danger {
-  color: #fc544b;
-}
-
-.text-hov-white:hover {
-  color: white;
-}
-
-/* ------------------------------------ */
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-/* ------------------------------------ */
-.text-center {
-  text-align: center;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
-.text-middle {
-  vertical-align: middle;
-}
-
 /* ------------------------------------ */
 .lh-1-0 {
   line-height: 1;
@@ -6345,6 +6104,247 @@ p {
 }
 .m-r-auto {
   margin-right: auto;
+}
+
+.a4-page {
+  width: 210mm; /* Lebar A4 */
+  height: 297mm; /* Tinggi A4 */
+  margin: 0 auto; /* Centering halaman */
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden; /* Menghindari overflow jika ada konten lebih */
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fafdfb;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 0;
+  margin: 16mm auto;
+  /*border: 1px #D3D3D3 solid;
+  border-radius: 5px;*/
+  background: white;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.page_background {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 0;
+  margin: 16mm auto;
+  /*border: 1px #D3D3D3 solid;
+  border-radius: 5px;*/
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  background-image: url(https://res.cloudinary.com/dmuggkwp1/image/upload/v1733367055/Desain_tanpa_judul_4_rnzq4e.png);
+  background-position: center; /* This will center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Make the background cover the entire div */
+}
+
+.subpage {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  margin: 1mm;
+}
+
+p {
+  display: block;
+  margin: 0;
+  font: 12pt;
+  color: #000;
+  line-height: 1.24;
+  text-align: left;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    /* background-color: #fff; */
+    -webkit-print-color-adjust: exact;
+  }
+
+  table {
+    break-inside: avoid;
+  }
+
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: 297mm;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    background: initial;
+    page-break-after: always;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  table.page-break-auto {
+    page-break-inside: auto;
+  }
+
+  table.page-break-auto tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  table.testung tr,
+  table.testung th {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  .testingriski {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}
+
+/*[ FONT ]
+///////////////////////////////////////////////////////////
+*/
+/* ------------------------------------ */
+.fs-11 {
+  font-size: 11px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-13 {
+  font-size: 13px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-15 {
+  font-size: 15px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-17 {
+  font-size: 17px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-19 {
+  font-size: 19px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fs-21 {
+  font-size: 21px;
+}
+.fs-22 {
+  font-size: 22px;
+}
+
+/* ------------------------------------ */
+.font-weight-light {
+  font-weight: 300 !important;
+}
+.font-weight-lighter {
+  font-weight: lighter !important;
+}
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+
+/* ------------------------------------ */
+.font-italic {
+  font-style: italic !important;
+}
+
+/*[ TEXT ]
+///////////////////////////////////////////////////////////
+*/
+/* ------------------------------------ */
+.text-white {
+  color: white;
+}
+.text-black {
+  color: black;
+}
+
+.text-primary {
+  color: #6777ef;
+}
+.text-secondary {
+  color: #757575;
+}
+.text-success {
+  color: #66bb6a;
+}
+.text-warning {
+  color: #ffa426;
+}
+.text-danger {
+  color: #fc544b;
+}
+
+.text-hov-white:hover {
+  color: white;
+}
+
+/* ------------------------------------ */
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/* ------------------------------------ */
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-middle {
+  vertical-align: middle;
 }
 
 /*[ DISPLAY ]
