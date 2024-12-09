@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  img {
+    display: initial;
+  }
+}
+
 /* ------------------------------------ */
 .lh-1-0 {
   line-height: 1;
