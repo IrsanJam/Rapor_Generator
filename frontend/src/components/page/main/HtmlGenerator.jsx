@@ -445,7 +445,7 @@ const HTMLGenerator = () => {
               sandbox="allow-scripts"
             />
           </div> */}
-          <div className="flex-1 text-black">
+          <div className="flex-1 text-black bg-zinc-400">
             <Raport />
           </div>
         </div>
