@@ -33,6 +33,7 @@ const TemplateComponent = ({ id }) => {
           <Drag
             updatePosition={updatePosition}
             deleteData={deleteData}
+            parentId={id}
             data={data}
             setData={setData}
           />

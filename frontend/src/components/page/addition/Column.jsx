@@ -3,7 +3,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import CardAtom from '../../secondary_components/CardAtom';
 import useData from '../../../hooks/useData';
 
-const Column = ({ tasks, deleteData }) => {
+const Column = ({ tasks, deleteData, parentId }) => {
   return (
     <div className="flex flex-col gap-3">
       <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
@@ -14,6 +14,8 @@ const Column = ({ tasks, deleteData }) => {
             id={task.id}
             name={task.key}
             key={task.id}
+            formData={task}
+            parentId={parentId}
           />
         ))}
       </SortableContext>

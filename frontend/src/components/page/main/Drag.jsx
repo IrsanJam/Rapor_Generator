@@ -3,7 +3,7 @@ import { closestCenter, closestCorners, DndContext } from '@dnd-kit/core';
 import Column from '../addition/Column';
 import { arrayMove } from '@dnd-kit/sortable';
 
-const Drag = ({ data, setData, deleteData, updatePosition }) => {
+const Drag = ({ data, setData, deleteData, updatePosition, parentId }) => {
   const getTaskPosition = (id) => data.findIndex((data) => data.id === id);
 
   const handleDragEnd = async (event) => {
@@ -44,7 +44,7 @@ const Drag = ({ data, setData, deleteData, updatePosition }) => {
     <div>
       <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
         <div className="flex justify-center items-center">
-          <Column deleteData={deleteData} tasks={data} />
+          <Column deleteData={deleteData} tasks={data} parentId={parentId} />
         </div>
       </DndContext>
     </div>

@@ -7,7 +7,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { FilePenLine } from 'lucide-react';
 import ModalComponent from './Modal';
 
-export default function CardAtom({ name, id, paramsId, deleteData }) {
+export default function CardAtom({ name, id, paramsId, deleteData, formData, parentId }) {
   const [showModal, setShowModal] = useState(false);
   const handleDeleteData = (e) => {
     e.stopPropagation();
@@ -49,7 +49,7 @@ export default function CardAtom({ name, id, paramsId, deleteData }) {
           />
         </div>
       </Card>
-      {showModal && <ModalComponent edit={true} id={id} />}
+      {showModal && <ModalComponent onClose={handleShowPopup} edit={true} id={parentId} />}
     </>
   );
 }
