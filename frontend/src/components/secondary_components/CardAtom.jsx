@@ -5,11 +5,10 @@ import { Puzzle } from 'lucide-react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-export default function CardAtom({ name, id, paramsId }) {
-  const { deleteData, fetchData } = useData(id);
-
-  const handleDeleteData = () => {
-    deleteData(paramsId);
+export default function CardAtom({ name, id, paramsId, deleteData }) {
+  const handleDeleteData = (e) => {
+    e.stopPropagation();
+    deleteData(id);
   };
 
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -20,17 +19,20 @@ export default function CardAtom({ name, id, paramsId }) {
   };
 
   return (
-    <Card ref={setNodeRef} {...attributes} {...listeners} style={style} className="mb-4">
+    <Card style={style} className="mb-4">
       <CardBody className="p-4 text-zinc-900 rounded-md">
         <div className="flex justify-between px-20 items-center">
-          <div className="flex gap-3">
+          <div ref={setNodeRef} {...attributes} {...listeners} className="flex gap-3">
             <Puzzle /> {name}
-          </div>
-          <div>
-            <Trash2 className="hover:cursor-pointer text-red-500" onClick={handleDeleteData} />
           </div>
         </div>
       </CardBody>
+      <div>
+        <Trash2
+          className="hover:cursor-pointer absolute top-5 right-5 text-red-500"
+          onClick={handleDeleteData}
+        />
+      </div>
     </Card>
   );
 }

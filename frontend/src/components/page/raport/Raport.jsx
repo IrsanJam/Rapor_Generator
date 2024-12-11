@@ -48,7 +48,9 @@ const Raport = () => {
                   className={index === currentSubpageContent.length ? 'page' : 'page_background'}
                   key={`page-${index}`}
                 >
-                  <div className="subpage ">{currentSubpageContent}</div>
+                  <div key={`subpage-${index}`} className="subpage ">
+                    {currentSubpageContent}
+                  </div>
                 </div>
               );
               currentPageContent = []; // Reset for the next page
