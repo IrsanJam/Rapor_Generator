@@ -9,6 +9,7 @@ import ModalComponent from './Modal';
 
 export default function CardAtom({ name, id, paramsId, deleteData, formData, parentId }) {
   const [showModal, setShowModal] = useState(false);
+  const [formEdit, setEdit] = useState(formData);
   const handleDeleteData = (e) => {
     e.stopPropagation();
     deleteData(id);
@@ -41,15 +42,23 @@ export default function CardAtom({ name, id, paramsId, deleteData, formData, par
         <div>
           <FilePenLine
             className="hover:cursor-pointer absolute top-5 right-16 text-green-500"
-            onClick={handleShowPopup}
+            onClick={() => handleShowPopup()}
           />
           <Trash2
             className="hover:cursor-pointer absolute top-5 right-5 text-red-500"
             onClick={handleDeleteData}
           />
         </div>
+        {showModal && (
+          <ModalComponent
+            formEdit={formEdit}
+            onClose={handleShowPopup}
+            edit={true}
+            parentId={parentId}
+            id={id}
+          />
+        )}
       </Card>
-      {showModal && <ModalComponent onClose={handleShowPopup} edit={true} id={parentId} />}
     </>
   );
 }

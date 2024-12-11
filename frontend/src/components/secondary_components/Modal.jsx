@@ -17,10 +17,10 @@ import SchoolDataComp from './third_components/SchoolDataComp';
 import StudentData from './third_components/StudentDataComp';
 import PasFotoComp from './third_components/PasFotoComp';
 
-function ModalComponent({ onClose, id, edit }) {
-  const [formData, setFormData] = useState({});
-  const [selectData, setSelectData] = useState('');
-  const { createData } = useData(id);
+function ModalComponent({ onClose, id, edit, parentId, formEdit }) {
+  const [formData, setFormData] = useState(edit ? formEdit : {});
+  const [selectData, setSelectData] = useState(edit ? formEdit['key'] : '');
+  const { createData } = useData(parentId);
 
   useEffect(() => {
     setFormData((prevData) => ({
