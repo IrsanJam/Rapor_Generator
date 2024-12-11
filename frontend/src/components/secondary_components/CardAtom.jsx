@@ -21,9 +21,12 @@ export default function CardAtom({ name, id, paramsId, deleteData }) {
   return (
     <Card style={style} className="mb-4">
       <CardBody className="p-4 text-zinc-900 rounded-md">
-        <div className="flex justify-between px-20 items-center">
-          <div ref={setNodeRef} {...attributes} {...listeners} className="flex gap-3">
-            <Puzzle /> {name}
+        <div className="flex justify-start px-20 items-center">
+          <div ref={setNodeRef} {...attributes} {...listeners} className="flex gap-8 !w-[180px] ">
+            <div>
+              <Puzzle />
+            </div>
+            <div>{name}</div>
           </div>
         </div>
       </CardBody>

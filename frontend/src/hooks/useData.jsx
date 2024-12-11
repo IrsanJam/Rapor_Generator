@@ -103,6 +103,7 @@ const useData = (id) => {
         `${import.meta.env.VITE_API_URL}/template/update-positions/${id}`,
         payload
       );
+      window.location.reload();
     } catch (error) {
       Swal.fire({
         title: 'Update Gagal',
