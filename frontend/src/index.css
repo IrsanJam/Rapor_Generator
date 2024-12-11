@@ -6517,9 +6517,49 @@ table.testung th {
   page-break-inside: avoid;
 }
 
+/* table.table-border td,
+table.table-border th {
+  border: 0.000000000000000000000000000000000000000000001px solid black;
+} */
+
 table.table-border td,
 table.table-border th {
-  border: 1px solid black;
+  border: 0; /* Menghapus border default */
+}
+
+table.table-border th {
+  border-top: 1px solid black; /* Border atas */
+  border-left: 1px solid black; /* Border kiri */
+}
+
+table.table-border tr th:last-child {
+  border-right: 1px solid black; /* Border kanan untuk sel terakhir */
+}
+
+table.table-border th:last-child td {
+  border-bottom: 1px solid black; /* Border bawah untuk baris terakhir */
+}
+
+table.table-border td:first-child {
+  border-top: 1px solid black; /* Border atas */
+  border-left: 1px solid black; /* Border kiri */
+}
+
+table.table-border td {
+  border-top: 1px solid black; /* Border atas */
+  border-left: 1px solid black; /* Border kiri */
+}
+
+table.table-border tr td:last-child {
+  border-right: 1px solid black; /* Border kanan untuk sel terakhir */
+}
+
+table.table-border tr:last-child td {
+  border-bottom: 1px solid black; /* Border bawah untuk baris terakhir */
+}
+
+table.table-border tr:last-child {
+  border-bottom: 1px solid black; /* Border bawah untuk baris terakhir */
 }
 
 table.table-border tr td,
@@ -6696,11 +6736,6 @@ table {
 
 table tr td {
   padding: 5px 0;
-}
-
-table.table-border td,
-table.table-border th {
-  border: 1px solid black;
 }
 
 table.table-border tr td,

@@ -12,6 +12,7 @@ import HTMLGenerator from './components/page/main/HtmlGenerator';
 import PreviewPage from './components/page/main/PreviewPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import NotFound from './routes/NotFound';
+import Drag from './components/page/main/Drag';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/detail/:id" element={<HTMLGenerator />}></Route>
           <Route path="/preview/:id" element={<PreviewPage />}></Route>
           <Route path="/m" element={<HTMLGenerator />}></Route>
+          <Route path="/test" element={<Drag />}></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

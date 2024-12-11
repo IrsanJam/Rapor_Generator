@@ -431,7 +431,7 @@ const HTMLGenerator = () => {
         {/* Content Area */}
         <div className="flex justify-center ">
           {/* Editor */}
-          <div className="bg-gray-800 flex-1 relative top-0">
+          <div className=" flex-1 relative top-0 h-screen">
             <div>{renderEditor()}</div>
           </div>
 

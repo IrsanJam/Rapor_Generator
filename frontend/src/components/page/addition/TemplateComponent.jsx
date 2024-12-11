@@ -6,9 +6,11 @@ import ModalComponent from '../../secondary_components/Modal';
 import useData from '../../../hooks/useData';
 import NoItem from '../../secondary_components/third_components/NoItem';
 import Loading from '../../secondary_components/third_components/Loading';
+import Column from './Column';
+import Drag from '../main/Drag';
 
 const TemplateComponent = ({ id }) => {
-  const { data, loading } = useData(id);
+  const { data, loading, setData } = useData(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -30,9 +32,10 @@ const TemplateComponent = ({ id }) => {
           </button>
         </div>
         {data.length > 0 ? (
-          data.map((item, index) => (
-            <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
-          ))
+          // data.map((item, index) => (
+          //   <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
+          // ))
+          <Drag data={data} setData={setData} />
         ) : (
           <NoItem onCreateTemplateClick={handleOpenModal} />
         )}

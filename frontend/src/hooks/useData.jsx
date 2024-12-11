@@ -101,7 +101,7 @@ const useData = (id) => {
     fetchData();
   }, []);
 
-  return { data, loading, updateData, deleteData, createData, fetchData };
+  return { data, loading, setData, updateData, deleteData, createData, fetchData };
 };
 
 export default useData;

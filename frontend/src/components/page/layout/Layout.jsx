@@ -322,9 +322,9 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="h-auto pb-5 min-h-screen   w-full flex bg-gray-900 text-white">
+    <div className="h-auto pb-5  w-full flex bg-gray-900 text-white">
       {/* Sidebar */}
-      <nav className="w-64 bg-gray-900 border-r border-gray-700">
+      <nav className="w-64 bg-gray-900 border-r h-screen h-s border-gray-700">
         <div className="p-4 px-2 flex items-center fixed top-[-10px] w-full">
           <img
             className=" max-h-[80px] max-w-[80px]"

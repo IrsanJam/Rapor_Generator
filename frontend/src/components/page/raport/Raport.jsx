@@ -18,10 +18,10 @@ const Raport = () => {
     let isFirstPage = true;
 
     for (const page of pages) {
-      const canvas = await html2canvas(page, { scale: 2 });
+      const canvas = await html2canvas(page, { scale: 3 });
       const imgData = canvas.toDataURL('image/png', 0.7);
       const imgWidth = 210; // A4 width in mm
-      const imgHeight = 280; // A4 height in mm
+      const imgHeight = 290; // A4 height in mm
 
       if (!isFirstPage) {
         pdf.addPage();
@@ -542,7 +542,7 @@ const Raport = () => {
                             {/* RowSpan Description: Ditambahkan sekali saja */}
                             {index === 0 && (
                               <td
-                                className="border border-gray-300"
+                                className="!border-collapse border-gray-300"
                                 rowSpan={item.tahfidz.section.length}
                               >
                                 {item.tahfidz.description}
