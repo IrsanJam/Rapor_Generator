@@ -97,11 +97,27 @@ const useData = (id) => {
     }
   };
 
+  const updatePosition = async (payload) => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/template/update-positions/${id}`,
+        payload
+      );
+    } catch (error) {
+      Swal.fire({
+        title: 'Update Gagal',
+        text: 'JSX Harus diisi ',
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+      });
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  return { data, loading, setData, updateData, deleteData, createData, fetchData };
+  return { data, loading, setData, updatePosition, updateData, deleteData, createData, fetchData };
 };
 
 export default useData;

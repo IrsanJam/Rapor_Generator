@@ -10,7 +10,7 @@ import Column from './Column';
 import Drag from '../main/Drag';
 
 const TemplateComponent = ({ id }) => {
-  const { data, loading, setData, deleteData } = useData(id);
+  const { data, loading, setData, deleteData, updatePosition } = useData(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -35,7 +35,12 @@ const TemplateComponent = ({ id }) => {
           // data.map((item, index) => (
           //   <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
           // ))
-          <Drag deleteData={deleteData} data={data} setData={setData} />
+          <Drag
+            updatePosition={updatePosition}
+            deleteData={deleteData}
+            data={data}
+            setData={setData}
+          />
         ) : (
           <NoItem onCreateTemplateClick={handleOpenModal} />
         )}

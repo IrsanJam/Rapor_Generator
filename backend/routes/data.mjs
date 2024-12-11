@@ -67,9 +67,12 @@ router.get('/template/data/:id', async (req, res) => {
     // Parse data yang ada, jika data ada
     const existingData = rows[0].data ? JSON.parse(rows[0].data) : [];
 
+    // Urutkan data berdasarkan `position`
+    const sortedData = existingData.sort((a, b) => a.position - b.position);
+
     // Kirim respons sukses dengan data yang ditemukan
     res.status(200).json({
-      data: existingData,
+      data: sortedData,
     });
   } catch (error) {
     console.error('Server error:', error);
@@ -132,9 +135,6 @@ router.post('/template/data/:id', async (req, res) => {
       return res.status(400).json({ error: 'Masukan data yang valid' });
     }
 
-    // Tambahkan ID unik ke data baru
-    const newData = { ...data, id: uuidv4() };
-
     // Ambil data lama dari kolom `data`
     const selectQuery = 'SELECT data FROM templates WHERE id = ?';
     const [rows] = await db.execute(selectQuery, [id]);
@@ -150,6 +150,12 @@ router.post('/template/data/:id', async (req, res) => {
     if (!Array.isArray(existingData)) {
       return res.status(500).json({ error: 'Data di database tidak valid (bukan array)' });
     }
+
+    // Tentukan `position` baru (auto-increment dari panjang array)
+    const newPosition = existingData.length;
+
+    // Tambahkan ID unik dan position ke data baru
+    const newData = { ...data, id: uuidv4(), position: newPosition };
 
     // Tambahkan objek baru ke array
     existingData.push(newData);
@@ -259,6 +265,50 @@ router.delete('/template/data/:id/:itemId', async (req, res) => {
     console.error('Server error:', error);
     res.status(500).json({
       message: 'Terjadi kesalahan saat menghapus data',
+      error: error.message,
+    });
+  }
+});
+
+//Update Position
+router.patch('/template/update-positions/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedPositions = req.body;
+
+    // Validasi input
+    if (!Array.isArray(updatedPositions)) {
+      return res.status(400).json({ error: 'Data posisi harus berupa array' });
+    }
+
+    // Ambil data lama dari database
+    const selectQuery = 'SELECT data FROM templates WHERE id = ?';
+    const [rows] = await db.execute(selectQuery, [id]);
+
+    // Jika template tidak ditemukan, kirimkan respons 404
+    if (rows.length === 0) {
+      return res.status(404).json({ error: `Template dengan ID ${id} tidak ditemukan` });
+    }
+
+    // Parse data JSON
+    const existingData = rows[0].data ? JSON.parse(rows[0].data) : [];
+
+    // Update posisi di dalam data JSON
+    const updatedData = existingData.map((item) => {
+      const updatedItem = updatedPositions.find((pos) => pos.id === item.id);
+      return updatedItem ? { ...item, position: updatedItem.position } : item;
+    });
+
+    // Simpan kembali data yang diperbarui ke database
+    const updateQuery = 'UPDATE templates SET data = ? WHERE id = ?';
+    await db.execute(updateQuery, [JSON.stringify(updatedData), id]);
+
+    res.status(200).json({ message: 'Posisi berhasil diperbarui', data: updatedData });
+  } catch (error) {
+    console.error('Server error:', error);
+    res.status(500).json({
+      message: 'Terjadi kesalahan saat memperbarui posisi',
       error: error.message,
     });
   }
