@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useData from '../../../hooks/useData';
 import { useParams } from 'react-router-dom';
 import { formattedDate } from '../../../utils/function';
-import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-
-// you can use a function to return the target element besides using React refs
 
 const Raport = () => {
   const { id } = useParams();
   const { data } = useData(id);
-
   const handleDownload = async () => {
     const pages = document.querySelectorAll('.page_background, .page');
     const pdf = new jsPDF('p', 'mm', 'a4');

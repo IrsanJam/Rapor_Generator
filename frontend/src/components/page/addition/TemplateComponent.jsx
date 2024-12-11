@@ -1,12 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { CirclePlus } from 'lucide-react';
-import CardAtom from '../../secondary_components/CardAtom';
 import ModalComponent from '../../secondary_components/Modal';
 import useData from '../../../hooks/useData';
 import NoItem from '../../secondary_components/third_components/NoItem';
 import Loading from '../../secondary_components/third_components/Loading';
-import Column from './Column';
 import Drag from '../main/Drag';
 
 const TemplateComponent = ({ id }) => {
@@ -32,9 +30,6 @@ const TemplateComponent = ({ id }) => {
           </button>
         </div>
         {data.length > 0 ? (
-          // data.map((item, index) => (
-          //   <CardAtom paramsId={item.id} id={id} name={item.key} key={index} />
-          // ))
           <Drag
             updatePosition={updatePosition}
             deleteData={deleteData}

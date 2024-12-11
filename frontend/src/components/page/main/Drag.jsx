@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { closestCenter, closestCorners, DndContext } from '@dnd-kit/core';
 import Column from '../addition/Column';
 import { arrayMove } from '@dnd-kit/sortable';
-import useData from '../../../hooks/useData';
 
 const Drag = ({ data, setData, deleteData, updatePosition }) => {
   const getTaskPosition = (id) => data.findIndex((data) => data.id === id);
 
   const handleDragEnd = async (event) => {
     const { active, over } = event;
-
     if (!over || active.id === over.id) return;
-
     let updatedData;
 
     // Perbarui data di frontend
@@ -35,7 +32,7 @@ const Drag = ({ data, setData, deleteData, updatePosition }) => {
       }));
 
       updatePosition(updatedPositions);
-      console.log('Positions updated successfully');
+      console.log(updatedData);
     } catch (error) {
       console.error('Failed to update positions:', error);
       // Tambahkan feedback ke pengguna jika diperlukan
