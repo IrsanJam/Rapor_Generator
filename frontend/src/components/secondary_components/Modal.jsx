@@ -20,7 +20,7 @@ import PasFotoComp from './third_components/PasFotoComp';
 function ModalComponent({ onClose, id, edit, parentId, formEdit }) {
   const [formData, setFormData] = useState(edit ? formEdit : {});
   const [selectData, setSelectData] = useState(edit ? formEdit['key'] : '');
-  const { createData } = useData(parentId);
+  const { createData, updateData } = useData(edit ? parentId : id);
 
   useEffect(() => {
     setFormData((prevData) => ({
@@ -43,7 +43,11 @@ function ModalComponent({ onClose, id, edit, parentId, formEdit }) {
   };
 
   const handleSubmit = () => {
-    createData(formData).then(() => onClose());
+    if (!edit) {
+      createData(formData).then(() => onClose());
+    } else {
+      updateData(id, formData).then(() => onClose());
+    }
   };
 
   const shouldRenderTextComp =
