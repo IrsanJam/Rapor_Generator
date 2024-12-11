@@ -17,7 +17,7 @@ import SchoolDataComp from './third_components/SchoolDataComp';
 import StudentData from './third_components/StudentDataComp';
 import PasFotoComp from './third_components/PasFotoComp';
 
-function ModalComponent({ onClose, id }) {
+function ModalComponent({ onClose, id, edit }) {
   const [formData, setFormData] = useState({});
   const [selectData, setSelectData] = useState('');
   const { createData } = useData(id);
@@ -56,7 +56,7 @@ function ModalComponent({ onClose, id }) {
     selectData === 'paragraph';
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-md w-[30rem] max-h-[90vh] overflow-y-scroll">
         <h2 className="flex justify-start gap-2 items-center  text-xl font-semibold text-gray-800 mb-4">
           <CirclePlus size={20} /> Create Components

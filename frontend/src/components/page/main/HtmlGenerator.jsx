@@ -81,47 +81,6 @@ const HTMLGenerator = () => {
     }
   }, [location.state]);
 
-  // const generatePreview = () => {
-  //   if (error) {
-  //     setPreview('');
-  //     return;
-  //   }
-
-  //   const escapedJsxCode = jsxCode.replace(/`/g, '\\`').replace(/\$/g, '\\$');
-  //   const html = `<!DOCTYPE html>
-  //     <html lang="en">
-  //     <head>
-  //         <meta charset="UTF-8">
-  //         <title>Generated Template</title>
-  //         <script src="https://cdn.tailwindcss.com"></script>
-  //         <style>
-  //         ${cssCode}
-  //         </style>
-  //     </head>
-  //     <body class="bg-gray-50">
-  //         <div id="root"></div>
-  //         <!-- Include React and ReactDOM -->
-  //         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  //         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  //         <!-- Include Babel -->
-  //         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  //         <script type="text/babel">
-  //         const data = ${JSON.stringify(parsedData)};
-  //         const App = () => (
-  //             ${escapedJsxCode}
-  //         );
-  //         ReactDOM.render(<App />, document.getElementById('root'));
-  //         </script>
-  //     </body>
-  //     </html>
-  //   `;
-  //   setPreview(html);
-  // };
-
-  const JI = () => {
-    return <p>msmsms</p>;
-  };
-
   const generatePreview = () => {
     if (error || !parsedData) {
       setPreview('<p style="color: red; text-align: center;">Invalid or Empty JSON Data</p>');
@@ -365,7 +324,7 @@ const HTMLGenerator = () => {
           />
         );
       default:
-        return null;
+        return <TemplateComponent id={id} />;
     }
   };
 
@@ -384,7 +343,7 @@ const HTMLGenerator = () => {
             <Code size={16} />
             Template
           </button>
-          <button
+          {/* <button
             onClick={() => setActiveTab('css')}
             className={`flex items-center gap-2 px-4 py-2 rounded ${
               activeTab === 'css' ? 'bg-blue-500' : 'bg-gray-700'
@@ -401,11 +360,16 @@ const HTMLGenerator = () => {
           >
             <Database size={16} />
             Data
-          </button>
+          </button> */}
 
           <button
-            onClick={handleCopyId}
-            className=" flex items-center gap-2 px-4 py-2 bg-amber-500 rounded hover:bg-amber-600"
+            onClick={() => {
+              handleCopyId(); // Panggil fungsi ini langsung
+              setActiveTab('copy'); // Panggil fungsi ini langsung
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded ${
+              activeTab === 'copy' ? 'bg-blue-500' : 'bg-gray-700'
+            }`}
           >
             <Copy size={16} />
             Copy ID
@@ -418,14 +382,6 @@ const HTMLGenerator = () => {
             <Trash2 size={16} />
             Delete
           </button>
-
-          <button
-            onClick={saveData}
-            className=" flex items-center gap-2 px-4 py-2 bg-green-600 rounded hover:bg-green-700"
-          >
-            <Save size={16} />
-            Save
-          </button>
         </div>
 
         {/* Content Area */}
@@ -435,16 +391,6 @@ const HTMLGenerator = () => {
             <div>{renderEditor()}</div>
           </div>
 
-          {/* Preview */}
-
-          {/* <div className="bg-white overflow-hidden">
-            <iframe
-              srcDoc={preview}
-              title="Preview"
-              className="w-full h-full"
-              sandbox="allow-scripts"
-            />
-          </div> */}
           <div className="flex-1 text-black ">
             <Raport />
           </div>

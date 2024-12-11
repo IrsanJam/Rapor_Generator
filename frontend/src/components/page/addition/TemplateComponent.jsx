@@ -40,7 +40,7 @@ const TemplateComponent = ({ id }) => {
           <NoItem onCreateTemplateClick={handleOpenModal} />
         )}
 
-        {isModalOpen && <ModalComponent id={id} onClose={handleCloseModal} />}
+        {isModalOpen && <ModalComponent edit={false} id={id} onClose={handleCloseModal} />}
       </div>
     ))
   );
