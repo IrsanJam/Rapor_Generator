@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { formattedDate } from '../../../utils/function';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { FileText } from 'lucide-react';
 
 const Raport = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const Raport = () => {
 
     for (const page of pages) {
       const canvas = await html2canvas(page, { scale: 3 });
-      const imgData = canvas.toDataURL('image/png', 0.7);
+      const imgData = canvas.toDataURL('image/png', 1);
       const imgWidth = 210; // A4 width in mm
       const imgHeight = 290; // A4 height in mm
 
@@ -57,7 +58,7 @@ const Raport = () => {
               currentSubpageContent.push(
                 <div
                   key={index}
-                  className={`flex justify-${
+                  className={`title-container flex justify-${
                     item.alignment === 'right'
                       ? 'end'
                       : item.alignment === 'left'
@@ -82,7 +83,7 @@ const Raport = () => {
             case 'h2':
               // When adding an h2, we can treat it as content for the current page
               currentSubpageContent.push(
-                <p className={`text-[18px] text-${item.alignment}`} key={index}>
+                <p className={`text-[18px] uppercase font-bold text-${item.alignment}`} key={index}>
                   {item.value}
                 </p>
               );
@@ -90,22 +91,20 @@ const Raport = () => {
 
             case 'text_box':
               currentSubpageContent.push(
-                <div className>
+                <>
                   <p className="text-center p-3">{item.title}</p>
                   <table className="cover-name">
                     <tr>
                       <td
                         className={`text-center ${
-                          item.title.includes('NIS')
-                            ? 'font-normal'
-                            : 'font-weight-bold text-[18px]'
+                          item.title.includes('NI') ? 'font-normal' : 'font-weight-bold text-[18px]'
                         } `}
                       >
                         {item.value}
                       </td>
                     </tr>
                   </table>
-                </div>
+                </>
               );
               break;
             case 'ministry':
@@ -325,7 +324,7 @@ const Raport = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td>{item.position},</td>
+                        <td>{item.jabatan},</td>
                       </tr>
                       <tr>
                         <td className="ttd">&nbsp;</td>
@@ -491,6 +490,114 @@ const Raport = () => {
               );
               break;
 
+            // case 'table_qurani':
+            //   currentSubpageContent.push(
+            //     <div id="islami-dan-qurani" className="mt-22 avoid-break">
+            //       <p className="komponen-rapor">ISLAMI DAN QURANI</p>
+            //       <div className="mt-4 mb-8">
+            //         <table className="table-border">
+            //           <thead>
+            //             <tr style={{ backgroundColor: '#C6E0B4' }}>
+            //               <th className="w-1/12 border border-gray-300">No</th>
+            //               <th className="w-3/12 border border-gray-300" colSpan="2">
+            //                 Elemen
+            //               </th>
+            //               <th className="w-8/12 border border-gray-300">Deskripsi</th>
+            //             </tr>
+            //           </thead>
+            //           <tbody>
+            //             {/* Tilawah Section */}
+            //             <tr>
+            //               <td className="text-center align-top border border-gray-300" rowSpan={4}>
+            //                 1
+            //               </td>
+            //               <td colSpan="3" className="border border-gray-300 font-bold">
+            //                 {item.tilawah.title ? item.tilawah.title : 'Judul Tidak Tersedia'}
+            //               </td>
+            //             </tr>
+            //             {(item.tilawah || []).length > 0 ? (
+            //               item.tilawah.section.map((section) => (
+            //                 <tr key={section.id}>
+            //                   <td className="border border-gray-300">{section.id}</td>
+            //                   <td className="border border-gray-300">{section.title}</td>
+            //                   <td className="border border-gray-300">{section.description}</td>
+            //                 </tr>
+            //               ))
+            //             ) : (
+            //               <tr>
+            //                 <td colSpan="3" className="border border-gray-300 text-center">
+            //                   Data Tidak Tersedia
+            //                 </td>
+            //               </tr>
+            //             )}
+
+            //             {/* Tahfidz Section */}
+            //             <tr>
+            //               <td className="text-center align-top border border-gray-300" rowSpan={4}>
+            //                 2
+            //               </td>
+            //               <td colSpan="3" className="border border-gray-300 font-bold">
+            //                 {item.tahfidz.title ? item.tahfidz.title : 'Tidak tersedia'}
+            //               </td>
+            //             </tr>
+            //             {(item.tahfidz || []).length > 0 ? (
+            //               item.tahfidz.section.map((section, index) => (
+            //                 <tr key={section.id}>
+            //                   <td className="border border-gray-300">{section.id}</td>
+            //                   <td className="border border-gray-300">{section.title}</td>
+            //                   {/* RowSpan Description: Ditambahkan sekali saja */}
+            //                   {index === 0 && (
+            //                     <td
+            //                       className="!border-collapse border-gray-300"
+            //                       rowSpan={item.tahfidz.section.length || 1}
+            //                     >
+            //                       {item.tahfidz.description
+            //                         ? item.tahfidz.description
+            //                         : 'Tidak tersedia'}
+            //                     </td>
+            //                   )}
+            //                 </tr>
+            //               ))
+            //             ) : (
+            //               <tr>
+            //                 <td colSpan="3" className="border border-gray-300 text-center">
+            //                   Data Tidak Tersedia
+            //                 </td>
+            //               </tr>
+            //             )}
+
+            //             {/* Akhlak Mulia Section */}
+            //             <tr>
+            //               <td colSpan="4" className="font-bold">
+            //                 {item.akhlak_mulia.title
+            //                   ? item.akhlak_mulia.title
+            //                   : 'Judul Tidak Tersedia'}
+            //               </td>
+            //             </tr>
+            //             {(item.akhlak_mulia || []).length > 0 ? (
+            //               item.akhlak_mulia.section.map((section, index) => (
+            //                 <tr key={index}>
+            //                   <td className="border border-gray-300">{index + 1}</td>
+            //                   <td colSpan="2" className="border border-gray-300">
+            //                     {section.title}
+            //                   </td>
+            //                   <td className="border border-gray-300">{section.description}</td>
+            //                 </tr>
+            //               ))
+            //             ) : (
+            //               <tr>
+            //                 <td colSpan="3" className="border border-gray-300 text-center">
+            //                   Data Tidak Tersedia
+            //                 </td>
+            //               </tr>
+            //             )}
+            //           </tbody>
+            //         </table>
+            //       </div>
+            //     </div>
+            //   );
+            //   break;
+
             case 'table_qurani':
               currentSubpageContent.push(
                 <div id="islami-dan-qurani" className="mt-22 avoid-break">
@@ -508,62 +615,125 @@ const Raport = () => {
                       </thead>
                       <tbody>
                         {/* Tilawah Section */}
-                        <tr>
-                          <td className="text-center align-top border border-gray-300" rowSpan={4}>
-                            1
-                          </td>
-                          <td colSpan="3" className="border border-gray-300 font-bold">
-                            {item.tilawah.title}
-                          </td>
-                        </tr>
-                        {item.tilawah.section.map((section) => (
-                          <tr key={section.id}>
-                            <td className="border border-gray-300">{section.id}</td>
-                            <td className="border border-gray-300">{section.title}</td>
-                            <td className="border border-gray-300">{section.description}</td>
+                        {item.tilawah ? (
+                          <>
+                            <tr>
+                              <td
+                                className="text-center align-top border border-gray-300"
+                                rowSpan={4}
+                              >
+                                1
+                              </td>
+                              <td colSpan="3" className="border border-gray-300 font-bold">
+                                {item.tilawah.title ? item.tilawah.title : 'Judul Tidak Tersedia'}
+                              </td>
+                            </tr>
+                            {(item.tilawah.section || []).length > 0 ? (
+                              item.tilawah.section.map((section) => (
+                                <tr key={section.id}>
+                                  <td className="border border-gray-300">{section.id}</td>
+                                  <td className="border border-gray-300">{section.title}</td>
+                                  <td className="border border-gray-300">{section.description}</td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="3" className="border border-gray-300 text-center">
+                                  Data Tidak Tersedia
+                                </td>
+                              </tr>
+                            )}
+                          </>
+                        ) : (
+                          <tr>
+                            <td colSpan="4" className="text-center">
+                              Data Tilawah Tidak Tersedia
+                            </td>
                           </tr>
-                        ))}
+                        )}
 
                         {/* Tahfidz Section */}
-                        <tr>
-                          <td className="text-center align-top border border-gray-300" rowSpan={4}>
-                            2
-                          </td>
-                          <td colSpan="3" className="border border-gray-300 font-bold">
-                            {item.tahfidz.title}
-                          </td>
-                        </tr>
-                        {item.tahfidz.section.map((section, index) => (
-                          <tr key={section.id}>
-                            <td className="border border-gray-300">{section.id}</td>
-                            <td className="border border-gray-300">{section.title}</td>
-                            {/* RowSpan Description: Ditambahkan sekali saja */}
-                            {index === 0 && (
+                        {item.tahfidz ? (
+                          <>
+                            <tr>
                               <td
-                                className="!border-collapse border-gray-300"
-                                rowSpan={item.tahfidz.section.length}
+                                className="text-center align-top border border-gray-300"
+                                rowSpan={4}
                               >
-                                {item.tahfidz.description}
+                                2
                               </td>
+                              <td colSpan="3" className="border border-gray-300 font-bold">
+                                {item.tahfidz.title ? item.tahfidz.title : 'Judul Tidak Tersedia'}
+                              </td>
+                            </tr>
+                            {(item.tahfidz.section || []).length > 0 ? (
+                              item.tahfidz.section.map((section, index) => (
+                                <tr key={section.id}>
+                                  <td className="border border-gray-300">{section.id}</td>
+                                  <td className="border border-gray-300">{section.title}</td>
+                                  {index === 0 && (
+                                    <td
+                                      className="!border-collapse border-gray-300"
+                                      rowSpan={item.tahfidz.section.length || 1}
+                                    >
+                                      {item.tahfidz.description
+                                        ? item.tahfidz.description
+                                        : 'Tidak tersedia'}
+                                    </td>
+                                  )}
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="3" className="border border-gray-300 text-center">
+                                  Data Tidak Tersedia
+                                </td>
+                              </tr>
                             )}
+                          </>
+                        ) : (
+                          <tr>
+                            <td colSpan="4" className="text-center">
+                              Data Tahfidz Tidak Tersedia
+                            </td>
                           </tr>
-                        ))}
+                        )}
 
                         {/* Akhlak Mulia Section */}
-                        <tr>
-                          <td colSpan="4" className="font-bold">
-                            {item.akhlak_mulia.title}
-                          </td>
-                        </tr>
-                        {item.akhlak_mulia.section.map((section, index) => (
-                          <tr key={index}>
-                            <td className="border border-gray-300">{index + 1}</td>
-                            <td colSpan="2" className="border border-gray-300">
-                              {section.title}
+                        {item.akhlak_mulia ? (
+                          <>
+                            <tr>
+                              <td colSpan="4" className="font-bold">
+                                {item.akhlak_mulia.title
+                                  ? item.akhlak_mulia.title
+                                  : 'Judul Tidak Tersedia'}
+                              </td>
+                            </tr>
+                            {(item.akhlak_mulia.section || []).length > 0 ? (
+                              item.akhlak_mulia.section.map((section, index) => (
+                                <tr key={index}>
+                                  <td className="border border-gray-300">{index + 1}</td>
+                                  <td colSpan="2" className="border border-gray-300">
+                                    {section.title}
+                                  </td>
+                                  <td className="border border-gray-300">{section.description}</td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="3" className="border border-gray-300 text-center">
+                                  Data Tidak Tersedia
+                                </td>
+                              </tr>
+                            )}
+                          </>
+                        ) : (
+                          <tr>
+                            <td colSpan="4" className="text-center">
+                              Data Akhlak Mulia Tidak Tersedia
                             </td>
-                            <td className="border border-gray-300">{section.description}</td>
                           </tr>
-                        ))}
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -975,12 +1145,20 @@ const Raport = () => {
               );
               break;
 
+            case 'space_top_little':
+              currentSubpageContent.push(<div className="mt-[2px] text-white text-xs">p</div>);
+              break;
+
+            case 'space_bottom_little':
+              currentSubpageContent.push(<div className="mb-[2px] text-white text-xs">p</div>);
+              break;
+
             case 'space_top':
-              currentSubpageContent.push(<div className="mt-[33px]"></div>);
+              currentSubpageContent.push(<div className="mt-[33px] text-white">p</div>);
               break;
 
             case 'space_bottom':
-              currentSubpageContent.push(<div className="mb-[33px]"></div>);
+              currentSubpageContent.push(<div className="mb-[33px] text-white">p</div>);
               break;
 
             default:
@@ -1001,10 +1179,13 @@ const Raport = () => {
   return (
     <>
       <button
-        className="top-5 text-white rounded-md left-5  relative z-[111] px-5 py-2 bg-zinc-700"
+        className="top-5 text-white rounded-md right-[-75%]  relative z-[111] px-5 py-2 bg-zinc-700"
         onClick={handleDownload}
       >
-        Generate PDF
+        <div className="flex justify-center items-center gap-3">
+          <FileText />
+          <div>Generate PDF</div>
+        </div>
       </button>
       <div
         id="content-to-pdf"

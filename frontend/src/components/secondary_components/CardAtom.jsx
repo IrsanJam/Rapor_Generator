@@ -4,6 +4,7 @@ import useData from '../../hooks/useData';
 import { Puzzle } from 'lucide-react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { FilePenLine } from 'lucide-react';
 
 export default function CardAtom({ name, id, paramsId, deleteData }) {
   const handleDeleteData = (e) => {
@@ -31,6 +32,10 @@ export default function CardAtom({ name, id, paramsId, deleteData }) {
         </div>
       </CardBody>
       <div>
+        <FilePenLine
+          className="hover:cursor-pointer absolute top-5 right-16 text-green-500"
+          onClick={handleDeleteData}
+        />
         <Trash2
           className="hover:cursor-pointer absolute top-5 right-5 text-red-500"
           onClick={handleDeleteData}
