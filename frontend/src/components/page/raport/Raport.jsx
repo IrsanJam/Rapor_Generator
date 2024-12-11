@@ -5,29 +5,45 @@ import { formattedDate } from '../../../utils/function';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { FileText } from 'lucide-react';
+import { useState } from 'react';
+import Loading from '../../secondary_components/third_components/Loading';
 
 const Raport = () => {
   const { id } = useParams();
   const { data } = useData(id);
+  const [load, setLoading] = useState(false);
+
   const handleDownload = async () => {
-    const pages = document.querySelectorAll('.page_background, .page');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    let isFirstPage = true;
+    try {
+      const pages = document.querySelectorAll('.page_background, .page');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      let isFirstPage = true;
+      setLoading(true);
 
-    for (const page of pages) {
-      const canvas = await html2canvas(page, { scale: 3 });
-      const imgData = canvas.toDataURL('image/png', 1);
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = 290; // A4 height in mm
+      for (const page of pages) {
+        const canvas = await html2canvas(page, { scale: 1.8, useCORS: true }); // Ubah skala dari 3 menjadi 2
+        const imgData = canvas.toDataURL('image/jpeg', 0.7);
+        const imgWidth = 210; // A4 width in mm
+        const imgHeight = 290; // A4 height in mm
 
-      if (!isFirstPage) {
-        pdf.addPage();
+        if (!isFirstPage) {
+          pdf.addPage();
+        }
+        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight); // Ubah format dari PNG ke JPEG
+        isFirstPage = false;
       }
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      isFirstPage = false;
-    }
 
-    pdf.save('document.pdf');
+      // Menghasilkan PDF sebagai Blob
+      const pdfOutput = pdf.output('blob');
+
+      // Membuat URL objek dari Blob
+      const pdfUrl = URL.createObjectURL(pdfOutput);
+
+      // Membuka PDF di tab baru
+      window.open(pdfUrl, '_blank');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    }
   };
 
   const DynamicDocument = ({ data }) => {
@@ -1182,7 +1198,7 @@ const Raport = () => {
         className="top-5 text-white rounded-md right-[-75%]  relative z-[111] px-5 py-2 bg-zinc-700"
         onClick={handleDownload}
       >
-        <div className="flex justify-center items-center gap-3">
+        <div onClick={handleDownload} className="flex justify-center items-center gap-3">
           <FileText />
           <div>Generate PDF</div>
         </div>
