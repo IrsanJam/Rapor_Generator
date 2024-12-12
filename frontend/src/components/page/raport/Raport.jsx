@@ -5,8 +5,6 @@ import { formattedDate } from '../../../utils/function';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { FileText } from 'lucide-react';
-import { useState } from 'react';
-import Loading from '../../secondary_components/third_components/Loading';
 
 const Raport = () => {
   const { id } = useParams();
@@ -40,33 +38,6 @@ const Raport = () => {
     window.open(pdfUrl, '_blank');
   };
 
-  // const handleDownload = async () => {
-  //   const pages = document.querySelectorAll('.page_background, .page');
-  //   const pdf = new jsPDF('p', 'mm', 'a4');
-  //   let isFirstPage = true;
-
-  //   for (const page of pages) {
-  //     const canvas = await html2canvas(page, { scale: 1.8, useCORS: true }); // Ubah skala dari 3 menjadi 2
-  //     const imgData = canvas.toDataURL('image/jpeg', 0.7);
-  //     const imgWidth = 210; // A4 width in mm
-  //     const imgHeight = 290; // A4 height in mm
-
-  //     if (!isFirstPage) {
-  //       pdf.addPage();
-  //     }
-  //     pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight); // Ubah format dari PNG ke JPEG
-  //     isFirstPage = false;
-  //   }
-
-  //   // Menghasilkan PDF sebagai Blob
-  //   const pdfOutput = pdf.output('blob');
-
-  //   // Membuat URL objek dari Blob
-  //   const pdfUrl = URL.createObjectURL(pdfOutput);
-
-  //   // Membuka PDF di tab baru
-  //   window.open(pdfUrl, '_blank');
-  // };
   const DynamicDocument = ({ data }) => {
     let currentPageContent = [];
     let currentSubpageContent = [];

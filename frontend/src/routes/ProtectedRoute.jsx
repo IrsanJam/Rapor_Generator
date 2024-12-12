@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   const { pathname } = useLocation();
 
   const authProtected = ['/404', '/'];
-  const protectedByToken = ['/detail/:id', '/main', '/preview/:id'];
+  const protectedByToken = ['/detail/:id', '/main', '/preview/:id', '/m', '/test'];
 
   if (authProtected.includes(pathname)) {
     if (token) return <Navigate to={'/main'} />;
