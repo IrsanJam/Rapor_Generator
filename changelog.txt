@@ -1,1 +1,15 @@
-Yang perlu diperbaiki adalah ketika keseluruhan json di ganti, preview tidak muncul
+// NOTE : Komponen itu adalah pilihan komponen seperti title, paraghraph, table dll
+
+//FRONTEND//
+
+Yang perlu diperbaiki adalah beberapa input popup add (tepatnya modalComponent) yang belum lengkap di beberapa komponen, dari table ke bawah, list data komponen di src/components/secondary_components/next_ui/data/select/data.js
+Rename Penamaan komponen yang merasa perlu diperbaiki, supaya orang diluar IT Mengerti
+mengganti background gambar belum bisa, bisa cek di index.css di class .page_background
+ketika mengedit untuk type select option belum muncul data dari database
+untuk menambah komponen atau menambah kondisi misalnya margin (supaya dinamis) ada di components/page/raport/Raport.jsx
+
+//BACKEND
+Untuk penginputan Data ada di schema_input.json
+Anda bebas memasukan data ke API yang ada di folder backend/routes/data.mjs(Gelondongan)
+
+

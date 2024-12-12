@@ -6,18 +6,14 @@ import { db } from '../config.mjs';
 
 dotenv.config();
 const router = express.Router();
-
 // Konfigurasi koneksi database MySQL
 
 // Register endpoint
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Simpan user ke database
     const [result] = await db.query(
       'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
       [username, email, hashedPassword]
@@ -32,37 +28,16 @@ router.post('/register', async (req, res) => {
 // Login endpoint
 router.post('/login', async (req, res) => {
   try {
-    // const { email, password } = req.body;
-    // // Cari user berdasarkan email
-    // const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-
-    // if (rows.length === 0) return res.status(404).json('User not found');
-    // const user = rows[0];
-
-    // // Bandingkan password
-    // const validPassword = await bcrypt.compare(password, user.password);
-    // if (!validPassword) return res.status(400).json('Wrong password');
-
-    // // Generate token
-    // const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-    // const { username } = user;
-    // res.status(200).json({ username, email, accessToken });
-
     const { email, password } = req.body;
-    // Cari user berdasarkan email
     const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
 
     if (rows.length === 0) return res.status(404).json('User not found');
     const user = rows[0];
 
-    // Bandingkan password
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) return res.status(400).json('Wrong password');
 
-    // Generate token
     const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
     const { username } = user;
     res.status(200).json({ username, email, accessToken });
   } catch (err) {

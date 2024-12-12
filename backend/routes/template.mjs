@@ -4,6 +4,7 @@ import pdf from 'html-pdf-node';
 
 const router = express.Router();
 
+// GET ALL
 router.get('/template', async (req, res) => {
   try {
     const query = 'SELECT * FROM templates';
@@ -19,25 +20,7 @@ router.get('/template', async (req, res) => {
   }
 });
 
-// router.get('/template', async (req, res) => {
-//   try {
-//     const userId = req.query.id; // Ambil userId dari query parameter
-//     if (!userId) {
-//       return res.status(400).json({ message: 'User ID is required' });
-//     }
-//     const query = 'SELECT * FROM templates WHERE id = ?';
-//     const [result] = await db.execute(query, [userId]);
-
-//     if (result.length === 0) {
-//       return res.status(200).json({ message: 'There is no template' });
-//     }
-//     return res.status(200).json(result[0]); // Mengembalikan template yang ditemukan
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: 'Error fetching data' });
-//   }
-// });
-
+//GET BY ID
 router.get('/template', async (req, res) => {
   try {
     const userId = req.query.id; // Ambil userId dari query parameter
@@ -57,7 +40,7 @@ router.get('/template', async (req, res) => {
   }
 });
 
-// Endpoint untuk menambahkan template baru
+//MAKE TEMPLATE
 router.post('/template', async (req, res) => {
   try {
     const { name, style = null, jsx = null, json = null, html = null } = req.body;
@@ -88,7 +71,7 @@ router.post('/template', async (req, res) => {
   }
 });
 
-// Endpoint untuk menghapus template berdasarkan ID
+//DELETE TEMPLATE
 router.delete('/template', async (req, res) => {
   try {
     const userId = req.query.id; // Ambil userId dari query parameter
@@ -108,7 +91,7 @@ router.delete('/template', async (req, res) => {
   }
 });
 
-// Endpoint untuk memperbarui template berdasarkan ID
+// UPDATE TEMPLATE
 router.patch('/template', async (req, res) => {
   try {
     const userId = req.query.id; // Ambil userId dari query parameter
@@ -145,6 +128,7 @@ router.patch('/template', async (req, res) => {
   }
 });
 
+//GET PREVIEW TEMPLATE
 router.get('/preview', async (req, res) => {
   const newData = req.body; // JSON baru dari request body
 

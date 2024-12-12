@@ -1,0 +1,596 @@
+{
+    "data": [
+        {
+            "key": "space_bottom",
+            "id": "d81b10c5-b0ce-433b-a903-8472ced741be",
+            "position": 0
+        },
+        {
+            "key": "logo",
+            "alignment": "center",
+            "value": "data:image/png;base64,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",
+            "id": "8c070b0f-3e83-43a3-bc1a-376204ae20cc",
+            "position": 1
+        },
+        {
+            "key": "title",
+            "alignment": "center",
+            "value": "Rapor",
+            "id": "7e3c07e1-2164-4873-ad42-eca457e28b0b",
+            "position": 2
+        },
+        {
+            "key": "title",
+            "alignment": "center",
+            "value": "Taman Kanak-Kanak Islam Terpadu Auliya\n\n",
+            "id": "11b2a605-2ee6-4881-a1d1-0e077b65facb",
+            "position": 3
+        },
+        {
+            "key": "space_bottom",
+            "id": "ac00ac77-a66a-4c94-8e24-90b2f03faaf6",
+            "position": 4
+        },
+        {
+            "key": "space_bottom",
+            "id": "3d2086fd-c0f5-4652-bddf-8b2c6c095d83",
+            "position": 5
+        },
+        {
+            "key": "space_bottom",
+            "id": "195f383f-c125-4193-b4ba-797c4c15e6b6",
+            "position": 6
+        },
+        {
+            "key": "text_box",
+            "title": "Nama Peserta Didik",
+            "alignment": "center",
+            "value": "Ailee Humaira Abimanyu\n",
+            "id": "a05980b8-71e5-40dc-8c8f-80173663e38e",
+            "position": 7
+        },
+        {
+            "key": "text_box",
+            "title": "NIPD",
+            "alignment": "center",
+            "value": "378488484889994",
+            "id": "91edd4a0-ac23-4d3b-8074-f9e173ff40a9",
+            "position": 8
+        },
+        {
+            "key": "ministry",
+            "paraghraph1": "Kementerian Pendidikan dan Kebudayaan",
+            "paraghraph2": "Republik Indonesia",
+            "alignment": "center",
+            "id": "32b3073c-968d-44a9-ab0f-72cde164e5b3",
+            "position": 9
+        },
+        {
+            "key": "break",
+            "id": "01796dc3-269c-4bcd-8b07-85a82eb7df61",
+            "position": 10
+        },
+        {
+            "key": "space_bottom",
+            "id": "e7ae8311-4176-4f09-a611-54a6e1de6f63",
+            "position": 11
+        },
+        {
+            "key": "h1",
+            "alignment": "center",
+            "value": "Rapor",
+            "id": "11f0d572-321f-402b-8fb8-54fa947bc87d",
+            "position": 12
+        },
+        {
+            "key": "h1",
+            "alignment": "center",
+            "value": "Taman Kanak-Kanak Islam Terpadu Auliya\n\n",
+            "id": "c2285023-57b6-4d47-b319-ef49c46b3fc2",
+            "position": 13
+        },
+        {
+            "key": "space_bottom",
+            "id": "4f7471c9-63b9-4b89-b610-d3cb32ca8c60",
+            "position": 14
+        },
+        {
+            "key": "space_bottom",
+            "id": "f5ea4b10-2927-4b6f-a125-f87970b1e0c8",
+            "position": 15
+        },
+        {
+            "key": "space_bottom",
+            "id": "e96234a3-938f-4f2d-abd3-8d646bd54f2a",
+            "position": 16
+        },
+        {
+            "key": "school_data",
+            "id": "de916732-9187-4adf-97ea-41c36c1cf951",
+            "position": 17
+        },
+        {
+            "key": "break",
+            "id": "365751ab-7541-4d94-a077-057bd44e42b5",
+            "position": 18
+        },
+        {
+            "key": "space_bottom",
+            "id": "5bd8e4c9-71d7-44bd-a82c-856d772eae78",
+            "position": 19
+        },
+        {
+            "key": "space_bottom",
+            "id": "1237c417-92cd-421e-8456-25370b08bfbe",
+            "position": 20
+        },
+        {
+            "key": "student_data",
+            "id": "3dcaadd5-4853-40ec-8a4c-0aeca02d1f6c",
+            "position": 21,
+            "name": "Irsan",
+            "nipd": "12345677 / 3388388383",
+            "birthplace": "Tangerang, 1 Januari 2010",
+            "gender": "laki-laki",
+            "agama": "islam",
+            "address": "jajanan",
+            "sub_district": "Kelurahan B, Kecamatan D",
+            "father_name": "Enda",
+            "mother_name": "Ett",
+            "address_parent": "Ksksl skakaka",
+            "full_address_parent": "jalsnd djkdkd dkdkkd dkkdkdkd"
+        },
+        {
+            "key": "pas_photo_ttd",
+            "id": "3e8009b9-e1a5-4ac2-842b-82c946f14ceb",
+            "position": 22,
+            "name": "Deni Romadhon",
+            "city": "Jakarta Selatan",
+            "jabatan": "kepala sekolah"
+        },
+        {
+            "key": "break",
+            "id": "5efdfd1e-1c82-4330-9359-fc432dba5153",
+            "position": 23
+        },
+        {
+            "key": "space_bottom",
+            "id": "0296ad66-9ba4-4d5e-ab38-f2208254a911",
+            "position": 24
+        },
+        {
+            "key": "title",
+            "alignment": "center",
+            "value": "Rapor",
+            "id": "f1b97600-5286-46d7-a6b3-d4a44b943988",
+            "position": 25
+        },
+        {
+            "key": "title_medium",
+            "alignment": "center",
+            "value": "Taman Kanak-Kanak Islam Terpadu Auliya\n\n",
+            "id": "a0469a12-9007-42fc-bcca-cc4956eab6bc",
+            "position": 26
+        },
+        {
+            "key": "space_bottom_little",
+            "id": "cb879713-9ead-4d6e-9d3e-dc73b434d3f2",
+            "position": 27
+        },
+        {
+            "key": "student_data_head",
+            "id": "d5a46f96-3489-48bf-875f-e66f8520f019",
+            "position": 28,
+            "name": "Indah Saputri",
+            "class": "E / X - Imam Bonjol",
+            "semester": "Ganjil",
+            "nisn": "03999303030003",
+            "nipd": "3773738393",
+            "academic_year": "2024/2025"
+        },
+        {
+            "key": "table_intra",
+            "id": "8a20133f-8dc5-496f-a45e-7540ae453a06",
+            "position": 29,
+            "headers": [
+                {
+                    "label": "No",
+                    "width": "w-[3%]"
+                },
+                {
+                    "label": "Mata Pelajaran",
+                    "width": "w-[20%]"
+                },
+                {
+                    "label": "Nilai Akhir",
+                    "width": "w-[20%]"
+                },
+                {
+                    "label": "Capaian Kompetensi",
+                    "width": "w-[60%]"
+                }
+            ],
+            "data": [
+                {
+                    "mataPelajaran": "Matematika",
+                    "nilaiAkhir": 39,
+                    "deskripsi": [
+                        "Baik",
+                        "Kekurangannnya masih belum tau perkalian"
+                    ]
+                },
+                {
+                    "mataPelajaran": "Bahasa Indonesia",
+                    "nilaiAkhir": 39,
+                    "deskripsi": [
+                        "Sangat Baik",
+                        "Kekurangannnya masih belum tau apa itu ASDIKAMBA"
+                    ]
+                },
+                {
+                    "mataPelajaran": "Ilmu Pengetahuan Alam",
+                    "nilaiAkhir": 89,
+                    "deskripsi": [
+                        "Sangat Baik",
+                        "Kekurangannnya masih tau Planet Pluto"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "table_qurani",
+            "id": "eb64adb4-2c70-434e-9afd-c4b7e99b97f6",
+            "position": 30,
+            "tilawah": {
+                "title": "Tilawah",
+                "section": [
+                    {
+                        "id": "a",
+                        "title": "Tajwid (Hukum Bacaan)",
+                        "description": "Deskripsi Tajwid untuk [Nama Siswa]"
+                    },
+                    {
+                        "id": "b",
+                        "title": "Tahsin (Kelancaran Bacaan)",
+                        "description": "Deskripsi Tahsin untuk [Nama Siswa]"
+                    },
+                    {
+                        "id": "c",
+                        "title": "Khataman (Ketuntasan Bacaan)",
+                        "description": "Deskripsi Khataman untuk [Nama Siswa]"
+                    }
+                ]
+            },
+            "tahfidz": {
+                "title": "Tahfidz",
+                "section": [
+                    {
+                        "id": "a",
+                        "title": "Tajwid (Hukum Bacaan)"
+                    },
+                    {
+                        "id": "b",
+                        "title": "Tahsin (Kelancaran Bacaan)"
+                    },
+                    {
+                        "id": "c",
+                        "title": "Khataman (Ketuntasan Bacaan)"
+                    }
+                ],
+                "description": "Deskripsi Tahfidz untuk [Nama Siswa]"
+            },
+            "akhlak_mulia": {
+                "title": "Akhlak Mulia",
+                "section": [
+                    {
+                        "title": "Tajwid (Hukum Bacaan)",
+                        "description": "Deskripsi Tahfidz untuk [Nama Siswa]"
+                    },
+                    {
+                        "title": "Tajwid (Hukum Bacaan)",
+                        "description": "Deskripsi Tahfidz untuk [Nama Siswa]"
+                    },
+                    {
+                        "title": "Tajwid (Hukum Bacaan)",
+                        "description": "Deskripsi Tahfidz untuk [Nama Siswa]"
+                    }
+                ]
+            }
+        },
+        {
+            "key": "space_bottom",
+            "id": "b9f62563-71e7-4fd7-a9c2-448d5e76bc17",
+            "position": 31
+        },
+        {
+            "key": "break",
+            "id": "6eabdbcc-e950-4ccd-8dd8-2daba11c7f02",
+            "position": 32
+        },
+        {
+            "key": "table_digital",
+            "id": "098cdd49-3761-4b39-9e7f-abb371061c11",
+            "position": 33,
+            "title": "DIGITAL LITERACY AND GLOBAL PERSPECTIVES",
+            "headers": [
+                {
+                    "label": "No",
+                    "width": "w-[3%]"
+                },
+                {
+                    "label": "Learning Objectives",
+                    "width": "w-[47%]"
+                },
+                {
+                    "label": "Description",
+                    "width": "w-[50%]"
+                }
+            ],
+            "data": [
+                {
+                    "learning_obj": "Digital Literacy",
+                    "deskripsi": [
+                        "Alhamdulillah ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi"
+                    ]
+                },
+                {
+                    "learning_obj": "Computer",
+                    "deskripsi": [
+                        "Koniciwa ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "table_refleksi",
+            "id": "4de1fb2f-eb60-49f0-8b73-59ffa217888a",
+            "position": 34,
+            "title": "REFLECTIVE, CRITICAL AND CREATIVE, COMMUNICATIVE AND COLLABORATIVE",
+            "headers": [
+                {
+                    "label": "No",
+                    "width": "w-[3%]"
+                },
+                {
+                    "label": "Softskills",
+                    "width": "w-[47%]"
+                },
+                {
+                    "label": "Description",
+                    "width": "w-[50%]"
+                }
+            ],
+            "data": [
+                {
+                    "softskill": "Tidur",
+                    "deskripsi": [
+                        "Alhamdulillah ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi"
+                    ]
+                },
+                {
+                    "softskill": "Makan",
+                    "deskripsi": [
+                        "Alhamdulillah ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "table",
+            "position": 45,
+            "title": "EKSTRAKULIKULER",
+            "containerClass": "custom-container-class",
+            "containerStyle": {
+                "marginTop": "20px"
+            },
+            "titleClass": "custom-title-class",
+            "titleStyle": {
+                "color": "#333",
+                "fontWeight": "bold"
+            },
+            "tableWrapperClass": "custom-wrapper-class",
+            "tableWrapperStyle": {
+                "padding": "10px"
+            },
+            "tableClass": "custom-table-class",
+            "tableStyle": {
+                "border": "1px solid #ddd"
+            },
+            "headerBgColor": "#C6E0B4",
+            "headerStyle": {
+                "color": "#000",
+                "fontFamily": "'Arial', sans-serif"
+            },
+            "headers": [
+                {
+                    "label": "No",
+                    "width": "w-[3%]",
+                    "key": "No",
+                    "colSpan": 1,
+                    "rowSpan": 1,
+                    "className": "header-no",
+                    "style": {
+                        "textAlign": "center"
+                    }
+                },
+                {
+                    "label": "Ekstrakulikuler",
+                    "width": "w-[20%]",
+                    "key": "Ekstrakulikuler",
+                    "colSpan": 1,
+                    "rowSpan": 1,
+                    "className": "header-ekstra",
+                    "style": {
+                        "textAlign": "left"
+                    }
+                },
+                {
+                    "label": "Predikat",
+                    "width": "w-[20%]",
+                    "key": "Predikat",
+                    "colSpan": 1,
+                    "rowSpan": 1,
+                    "className": "header-predikat",
+                    "style": {
+                        "textAlign": "center"
+                    }
+                },
+                {
+                    "label": "Description",
+                    "width": "w-[30%]",
+                    "key": "Description",
+                    "colSpan": 1,
+                    "rowSpan": 1,
+                    "className": "header-description",
+                    "style": {
+                        "textAlign": "left"
+                    }
+                }
+            ],
+            "data": [
+                {
+                    "No": 1,
+                    "Ekstrakulikuler": "Makan minum",
+                    "Predikat": "Juara",
+                    "Description": [
+                        "Alhamdulillah ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi."
+                    ],
+                    "No_colSpan": 1,
+                    "No_rowSpan": 1,
+                    "Ekstrakulikuler_colSpan": 1,
+                    "Ekstrakulikuler_rowSpan": 1,
+                    "Predikat_colSpan": 1,
+                    "Predikat_rowSpan": 1,
+                    "Description_colSpan": 1,
+                    "Description_rowSpan": 1,
+                    "className": "row-1",
+                    "style": {
+                        "backgroundColor": "#f9f9f9",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "No": 2,
+                    "Ekstrakulikuler": "Membaca sambil minum",
+                    "Predikat": "Juara",
+                    "Description": [
+                        "Alhamdulillah ananda Ailee Humaira Abimanyu sudah belajar cara aman menggunakan teknologi, seperti tidak membuka link atau aplikasi tanpa izin orang tua dan tidak berbagi informasi pribadi. Ananda juga belajar untuk selalu meminta bantuan orang dewasa saat menggunakan perangkat dan memahami cara berinteraksi secara sosial melalui teknologi."
+                    ],
+                    "No_colSpan": 1,
+                    "No_rowSpan": 1,
+                    "Ekstrakulikuler_colSpan": 1,
+                    "Ekstrakulikuler_rowSpan": 1,
+                    "Predikat_colSpan": 1,
+                    "Predikat_rowSpan": 1,
+                    "Description_colSpan": 1,
+                    "Description_rowSpan": 1,
+                    "className": "row-2",
+                    "style": {
+                        "backgroundColor": "#fff"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "break",
+            "id": "f5c5d398-76b9-4c9d-bcf6-a6648ca7c9a2",
+            "position": 36
+        },
+        {
+            "key": "table",
+            "id": "24b0b6ed-7dbb-4ec7-a9ba-f46d0b337c35",
+            "position": 37,
+            "title": "EKSTRAKULIKULER",
+            "headers": [
+                {
+                    "label": "No",
+                    "width": "w-[3%]",
+                    "key": "No"
+                },
+                {
+                    "label": "Kejuaraan",
+                    "width": "w-[45%]",
+                    "key": "Kejuaraan"
+                },
+                {
+                    "label": "Description",
+                    "width": "w-[50%]",
+                    "key": "Description"
+                }
+            ],
+            "data": [
+                {
+                    "No": 1,
+                    "Kejuaraan": "Karate",
+                    "Description": [
+                        "Alhamdulillah ananda telah menjadi juara"
+                    ]
+                },
+                {
+                    "No": 2,
+                    "Kejuaraan": "Taekwondo",
+                    "Description": [
+                        "Alhamdulillah ananda telah menjadi juara"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "table_kehadiran",
+            "id": "21064176-609a-478a-ad00-5741f1e6bf55",
+            "position": 38,
+            "title": "KEHADIRAN",
+            "data": [
+                {
+                    "status": "Jumlah Hari Efektif",
+                    "deskripsi": [
+                        "0 hari"
+                    ]
+                },
+                {
+                    "status": "Sakit",
+                    "deskripsi": [
+                        "4 hari"
+                    ]
+                },
+                {
+                    "status": "Izin",
+                    "deskripsi": [
+                        "10 hari"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "refleksi",
+            "id": "62e0ee93-5946-4b12-be5b-b947d0a5aaf6",
+            "position": 39,
+            "value": "lemsjjdjsakdlkkdndnksk"
+        },
+        {
+            "key": "validation",
+            "id": "ed267ae2-85db-4f94-9bbf-40afe74c32ba",
+            "position": 40
+        },
+        {
+            "key": "break",
+            "id": "e3584a0b-e498-4145-a1e3-41a405ad68c3",
+            "position": 41
+        },
+        {
+            "key": "pindah_sekolah1",
+            "id": "ba2cfa64-45fe-4ad9-ac9c-21cc425dcc4e",
+            "position": 42
+        },
+        {
+            "key": "break",
+            "id": "dc5725c5-d620-4471-acdc-86f819a7cd81",
+            "position": 43
+        },
+        {
+            "key": "pindah_sekolah2",
+            "id": "cb569f9b-b2da-4f5c-810a-fb24306c7bc0",
+            "position": 44
+        }
+    ]
+}

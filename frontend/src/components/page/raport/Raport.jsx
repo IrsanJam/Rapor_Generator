@@ -498,114 +498,6 @@ const Raport = () => {
               );
               break;
 
-            // case 'table_qurani':
-            //   currentSubpageContent.push(
-            //     <div id="islami-dan-qurani" className="mt-22 avoid-break">
-            //       <p className="komponen-rapor">ISLAMI DAN QURANI</p>
-            //       <div className="mt-4 mb-8">
-            //         <table className="table-border">
-            //           <thead>
-            //             <tr style={{ backgroundColor: '#C6E0B4' }}>
-            //               <th className="w-1/12 border border-gray-300">No</th>
-            //               <th className="w-3/12 border border-gray-300" colSpan="2">
-            //                 Elemen
-            //               </th>
-            //               <th className="w-8/12 border border-gray-300">Deskripsi</th>
-            //             </tr>
-            //           </thead>
-            //           <tbody>
-            //             {/* Tilawah Section */}
-            //             <tr>
-            //               <td className="text-center align-top border border-gray-300" rowSpan={4}>
-            //                 1
-            //               </td>
-            //               <td colSpan="3" className="border border-gray-300 font-bold">
-            //                 {item.tilawah.title ? item.tilawah.title : 'Judul Tidak Tersedia'}
-            //               </td>
-            //             </tr>
-            //             {(item.tilawah || []).length > 0 ? (
-            //               item.tilawah.section.map((section) => (
-            //                 <tr key={section.id}>
-            //                   <td className="border border-gray-300">{section.id}</td>
-            //                   <td className="border border-gray-300">{section.title}</td>
-            //                   <td className="border border-gray-300">{section.description}</td>
-            //                 </tr>
-            //               ))
-            //             ) : (
-            //               <tr>
-            //                 <td colSpan="3" className="border border-gray-300 text-center">
-            //                   Data Tidak Tersedia
-            //                 </td>
-            //               </tr>
-            //             )}
-
-            //             {/* Tahfidz Section */}
-            //             <tr>
-            //               <td className="text-center align-top border border-gray-300" rowSpan={4}>
-            //                 2
-            //               </td>
-            //               <td colSpan="3" className="border border-gray-300 font-bold">
-            //                 {item.tahfidz.title ? item.tahfidz.title : 'Tidak tersedia'}
-            //               </td>
-            //             </tr>
-            //             {(item.tahfidz || []).length > 0 ? (
-            //               item.tahfidz.section.map((section, index) => (
-            //                 <tr key={section.id}>
-            //                   <td className="border border-gray-300">{section.id}</td>
-            //                   <td className="border border-gray-300">{section.title}</td>
-            //                   {/* RowSpan Description: Ditambahkan sekali saja */}
-            //                   {index === 0 && (
-            //                     <td
-            //                       className="!border-collapse border-gray-300"
-            //                       rowSpan={item.tahfidz.section.length || 1}
-            //                     >
-            //                       {item.tahfidz.description
-            //                         ? item.tahfidz.description
-            //                         : 'Tidak tersedia'}
-            //                     </td>
-            //                   )}
-            //                 </tr>
-            //               ))
-            //             ) : (
-            //               <tr>
-            //                 <td colSpan="3" className="border border-gray-300 text-center">
-            //                   Data Tidak Tersedia
-            //                 </td>
-            //               </tr>
-            //             )}
-
-            //             {/* Akhlak Mulia Section */}
-            //             <tr>
-            //               <td colSpan="4" className="font-bold">
-            //                 {item.akhlak_mulia.title
-            //                   ? item.akhlak_mulia.title
-            //                   : 'Judul Tidak Tersedia'}
-            //               </td>
-            //             </tr>
-            //             {(item.akhlak_mulia || []).length > 0 ? (
-            //               item.akhlak_mulia.section.map((section, index) => (
-            //                 <tr key={index}>
-            //                   <td className="border border-gray-300">{index + 1}</td>
-            //                   <td colSpan="2" className="border border-gray-300">
-            //                     {section.title}
-            //                   </td>
-            //                   <td className="border border-gray-300">{section.description}</td>
-            //                 </tr>
-            //               ))
-            //             ) : (
-            //               <tr>
-            //                 <td colSpan="3" className="border border-gray-300 text-center">
-            //                   Data Tidak Tersedia
-            //                 </td>
-            //               </tr>
-            //             )}
-            //           </tbody>
-            //         </table>
-            //       </div>
-            //     </div>
-            //   );
-            //   break;
-
             case 'table_qurani':
               currentSubpageContent.push(
                 <div id="islami-dan-qurani" className="mt-22 avoid-break">
@@ -749,16 +641,82 @@ const Raport = () => {
               );
               break;
 
+            // case 'table':
+            //   currentSubpageContent.push(
+            //     <div id="kurikulumMerdeka" className="m-t-22" key={index}>
+            //       <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
+            //       <div className="m-t-16 m-b-16">
+            //         <table className="table-border page-break-auto">
+            //           <thead>
+            //             <tr style={{ backgroundColor: '#C6E0B4' }}>
+            //               {(item.headers || []).map((header, index) => (
+            //                 <th key={index} className={header.width || ''}>
+            //                   {header.label || 'Header Tidak Tersedia'}
+            //                 </th>
+            //               ))}
+            //             </tr>
+            //           </thead>
+            //           <tbody>
+            //             {(item.data || []).length > 0 ? (
+            //               item.data.map((row, rowIndex) => (
+            //                 <tr key={rowIndex}>
+            //                   {(item.headers || []).map((header, colIndex) => (
+            //                     <td key={colIndex} className="align-middle no-bold">
+            //                       {row[header.key] !== undefined ? row[header.key] : '-'}
+            //                     </td>
+            //                   ))}
+            //                 </tr>
+            //               ))
+            //             ) : (
+            //               <tr>
+            //                 <td colSpan={item.headers?.length || 1} className="text-center">
+            //                   Data Tidak Tersedia
+            //                 </td>
+            //               </tr>
+            //             )}
+            //           </tbody>
+            //         </table>
+            //       </div>
+            //     </div>
+            //   );
+            //   break;
             case 'table':
               currentSubpageContent.push(
-                <div id="kurikulumMerdeka" className="m-t-22" key={index}>
-                  <p className="komponen-rapor uppercase">{item.title || 'Judul Tidak Tersedia'}</p>
-                  <div className="m-t-16 m-b-16">
-                    <table className="table-border page-break-auto">
+                <div
+                  id="kurikulumMerdeka"
+                  className={`m-t-22 ${item.containerClass || ''}`}
+                  style={item.containerStyle || {}}
+                  key={index}
+                >
+                  <p
+                    className={`komponen-rapor uppercase ${item.titleClass || ''}`}
+                    style={item.titleStyle || {}}
+                  >
+                    {item.title || 'Judul Tidak Tersedia'}
+                  </p>
+                  <div
+                    className={`m-t-16 m-b-16 ${item.tableWrapperClass || ''}`}
+                    style={item.tableWrapperStyle || {}}
+                  >
+                    <table
+                      className={`table-border page-break-auto ${item.tableClass || ''}`}
+                      style={item.tableStyle || {}}
+                    >
                       <thead>
-                        <tr style={{ backgroundColor: '#C6E0B4' }}>
+                        <tr
+                          style={{
+                            backgroundColor: item.headerBgColor || '#C6E0B4',
+                            ...item.headerStyle,
+                          }}
+                        >
                           {(item.headers || []).map((header, index) => (
-                            <th key={index} className={header.width || ''}>
+                            <th
+                              key={index}
+                              className={header.className || ''}
+                              style={header.style || { width: header.width || 'auto' }}
+                              colSpan={header.colSpan || 1}
+                              rowSpan={header.rowSpan || 1}
+                            >
                               {header.label || 'Header Tidak Tersedia'}
                             </th>
                           ))}
@@ -767,9 +725,19 @@ const Raport = () => {
                       <tbody>
                         {(item.data || []).length > 0 ? (
                           item.data.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
+                            <tr
+                              key={rowIndex}
+                              style={row.style || {}}
+                              className={row.className || ''}
+                            >
                               {(item.headers || []).map((header, colIndex) => (
-                                <td key={colIndex} className="align-middle no-bold">
+                                <td
+                                  key={colIndex}
+                                  className={`align-middle ${header.cellClass || ''}`}
+                                  style={header.cellStyle || {}}
+                                  colSpan={row[`${header.key}_colSpan`] || 1}
+                                  rowSpan={row[`${header.key}_rowSpan`] || 1}
+                                >
                                   {row[header.key] !== undefined ? row[header.key] : '-'}
                                 </td>
                               ))}
@@ -777,7 +745,11 @@ const Raport = () => {
                           ))
                         ) : (
                           <tr>
-                            <td colSpan={item.headers?.length || 1} className="text-center">
+                            <td
+                              colSpan={item.headers?.length || 1}
+                              className="text-center"
+                              style={item.noDataStyle || {}}
+                            >
                               Data Tidak Tersedia
                             </td>
                           </tr>

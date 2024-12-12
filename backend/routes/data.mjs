@@ -4,6 +4,9 @@ import { db } from '../config.mjs';
 
 const router = express.Router();
 
+// NOTE : Komponen itu adalah pilihan komponen seperti title, paraghraph, table dll
+
+//Mendapatkan Semua Data Komponen
 router.get('/template/data/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -28,6 +31,7 @@ router.get('/template/data/:id', async (req, res) => {
   }
 });
 
+//Mendapatkan Komponen By ID
 router.get('/template/data/:id/:itemId?', async (req, res) => {
   try {
     const { id, itemId } = req.params;
@@ -61,6 +65,7 @@ router.get('/template/data/:id/:itemId?', async (req, res) => {
   }
 });
 
+// Membuat komponen
 router.post('/template/data/:id', async (req, res) => {
   try {
     const data = req.body;
