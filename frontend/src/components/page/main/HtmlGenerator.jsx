@@ -236,7 +236,7 @@ const HTMLGenerator = () => {
       }).then((res) => {
         if (res.isConfirmed) {
           if (res.isConfirmed) {
-            axios.delete(`${import.meta.env.VITE_API_URL}/template/?id=${id}`, {}).then(() => {
+            axios.delete(`${import.meta.env.VITE_API_URL}/template/${id}`, {}).then(() => {
               Swal.fire({
                 title: 'Confirmation',
                 text: 'Produk Berhasil di hapus',

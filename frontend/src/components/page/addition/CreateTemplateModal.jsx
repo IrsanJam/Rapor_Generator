@@ -8,12 +8,13 @@ function CreateTemplateModal({ onClose, status, id }) {
   const [templateName, setTemplateName] = useState('');
 
   useEffect(() => {
-    const handleId = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/${id}`);
-      setTemplateName(response.data.name);
-    };
-
-    handleId();
+    if (status === 'edit') {
+      const handleId = async () => {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/${id}`);
+        setTemplateName(response.data.name);
+      };
+      handleId();
+    }
   }, [id]);
 
   const handleSubmit = async (e) => {

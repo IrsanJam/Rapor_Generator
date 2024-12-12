@@ -72,15 +72,15 @@ router.post('/template', async (req, res) => {
 });
 
 //DELETE TEMPLATE
-router.delete('/template', async (req, res) => {
+router.delete('/template/:id', async (req, res) => {
   try {
-    const userId = req.query.id; // Ambil userId dari query parameter
-    if (!userId) {
+    const { id } = req.params; // Ambil userId dari query parameter
+    if (!id) {
       return res.status(400).json({ message: 'User ID is required' });
     }
 
     const query = 'DELETE FROM templates WHERE id = ?';
-    const [result] = await db.execute(query, [userId]);
+    const [result] = await db.execute(query, [id]);
 
     if (result.affectedRows === 0) {
       return res.status(400).json({ message: 'Nothing to delete' });
