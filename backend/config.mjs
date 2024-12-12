@@ -12,10 +12,10 @@ export const cloudApiSecret = process.env.CLOUD_API_SECRET;
 
 export const urlPort = process.env.URL_PORT || 5555;
 export const mysqlDBConfig = {
-  host: 'localhost', // Atau alamat host database
-  user: 'root', // Ganti dengan username MySQL kamu
-  password: 'secret', // Ganti dengan password MySQL kamu
-  database: 'report_gen', // Ganti dengan nama database kamu
+  host: String(process.env.DB_HOST), // Atau alamat host database
+  user: String(process.env.DB_USER), // Ganti dengan username MySQL kamu
+  password: String(process.env.DB_PASSWORD), // Ganti dengan password MySQL kamu
+  database: String(process.env.DB_NAME), // Ganti dengan nama database kamu
 };
 
 export const db = await mysql.createPool(mysqlDBConfig);

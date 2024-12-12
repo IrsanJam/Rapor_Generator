@@ -1,6 +1,6 @@
 export const list = [
-  { key: 'h1', label: 'H1' },
-  { key: 'h2', label: 'H2' },
+  { key: 'title', label: 'Title' },
+  { key: 'title_medium', label: 'Title Medium' },
   { key: 'space_top', label: 'Space Top' },
   { key: 'space_bottom', label: 'Space Bottom' },
   { key: 'space_top_litle', label: 'Space Top (xs)' },
