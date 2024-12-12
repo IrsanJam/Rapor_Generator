@@ -57,7 +57,7 @@ const LoginPage = () => {
               <div className="flex-col justify-center items-center w-full gap-5">
                 <img
                   className="ml-[148px] max-h-[100px]  w-[100px]"
-                  src="../../public/icon-preview.png"
+                  src="https://res.cloudinary.com/dmuggkwp1/image/upload/v1733979715/icon-preview_v3vqht.png"
                   alt="logo"
                 />
                 <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

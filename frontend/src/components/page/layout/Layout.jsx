@@ -328,7 +328,7 @@ const Layout = ({ children }) => {
         <div className="p-4 px-2 flex items-center fixed top-[-10px] w-full">
           <img
             className=" max-h-[80px] max-w-[80px]"
-            src="../../public/icon-preview.png"
+            src="https://res.cloudinary.com/dmuggkwp1/image/upload/v1733979715/icon-preview_v3vqht.png"
             alt="logo"
           />
           <span className="text-xl font-bold">Report Gen</span>
