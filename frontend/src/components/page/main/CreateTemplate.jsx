@@ -12,6 +12,8 @@ function CreateTemplate() {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
   const [buttonCard, setButtonCard] = useState([]);
+  const [status, setStatus] = useState('');
+  const [id, setId] = useState('');
 
   const cekData = async () => {
     try {
@@ -29,6 +31,11 @@ function CreateTemplate() {
     }
   };
 
+  const statusHandler = () => {
+    setStatus('add');
+    handleOpenModal();
+  };
+
   useEffect(() => {
     cekData();
   }, []);
@@ -38,9 +45,16 @@ function CreateTemplate() {
       {buttonCard.length === 0 ? (
         <NoTemplates onCreateTemplateClick={handleOpenModal} />
       ) : (
-        <CardComponents buttonCard={buttonCard} onCreateTemplateClick={handleOpenModal} />
+        <CardComponents
+          status={status}
+          setIsModalOpen={setIsModalOpen}
+          setStatus={setStatus}
+          buttonCard={buttonCard}
+          onCreateTemplateClick={statusHandler}
+          setId={setId}
+        />
       )}
-      {isModalOpen && <CreateTemplateModal onClose={handleCloseModal} />}
+      {isModalOpen && <CreateTemplateModal id={id} status={status} onClose={handleCloseModal} />}
     </div>
   );
 }

@@ -21,14 +21,14 @@ router.get('/template', async (req, res) => {
 });
 
 //GET BY ID
-router.get('/template', async (req, res) => {
+router.get('/template/:id', async (req, res) => {
   try {
-    const userId = req.query.id; // Ambil userId dari query parameter
-    if (!userId) {
+    const { id } = req.params; // Ambil userId dari query parameter
+    if (!id) {
       return res.status(400).json({ message: 'User ID is required' });
     }
     const query = 'SELECT * FROM templates WHERE id = ?';
-    const [result] = await db.execute(query, [userId]);
+    const [result] = await db.execute(query, [id]);
 
     if (result.length === 0) {
       return res.status(404).json({ message: 'No template found with this ID' });
@@ -92,25 +92,27 @@ router.delete('/template', async (req, res) => {
 });
 
 // UPDATE TEMPLATE
-router.patch('/template', async (req, res) => {
+router.patch('/template/:id', async (req, res) => {
   try {
-    const userId = req.query.id; // Ambil userId dari query parameter
-    const { name, style, jsx, json, html } = req.body;
+    const { id } = req.params; // Ambil userId dari query parameter
+    // const { name, style, jsx, json, html } = req.body;
+    const { name } = req.body;
 
     // Validasi input
-    if (!userId) {
+    if (!id) {
       return res.status(400).json({ message: 'User ID is required' });
     }
 
-    if (!jsx) {
-      return res.status(400).json({ message: 'Field "JSX" is required' });
-    }
+    // if (!jsx) {
+    //   return res.status(400).json({ message: 'Field "JSX" is required' });
+    // }
 
     // Query untuk memperbarui template berdasarkan userId
-    const query = 'UPDATE templates SET  style = ?, jsx = ?, json = ?, html = ? WHERE id = ?';
+    // const query = 'UPDATE templates SET  style = ?, jsx = ?, json = ?, html = ? WHERE id = ?';
+    const query = 'UPDATE templates SET name = ? WHERE id = ?';
 
     // Nilai-nilai yang akan dimasukkan ke dalam query
-    const values = [style, jsx, JSON.stringify(json), html, userId];
+    const values = [name, id];
 
     // Menggunakan Promise untuk query
     const [result] = await db.execute(query, values);

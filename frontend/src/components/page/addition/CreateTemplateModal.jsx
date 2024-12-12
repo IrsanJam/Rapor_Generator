@@ -1,37 +1,74 @@
 // components/CreateTemplateModal.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { mockData } from '../../../data/mock';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-function CreateTemplateModal({ onClose }) {
+function CreateTemplateModal({ onClose, status, id }) {
   const [templateName, setTemplateName] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      name: templateName,
+  useEffect(() => {
+    const handleId = async () => {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/template/${id}`);
+      setTemplateName(response.data.name);
     };
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/template`, data);
-      if (response) {
+
+    handleId();
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    if (status !== 'edit') {
+      e.preventDefault();
+      const data = {
+        name: templateName,
+      };
+      try {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/template`, data);
+        if (response) {
+          Swal.fire({
+            title: 'Done',
+            text: `Data succesfully saved`,
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: 'rgb(3 150 199)',
+          }).then((res) => {
+            window.location.reload();
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          title: 'Done',
-          text: `Data succesfully saved`,
-          icon: 'success',
-          confirmButtonText: 'OK',
-          confirmButtonColor: 'rgb(3 150 199)',
-        }).then((res) => {
-          window.location.reload();
+          title: 'Gagal',
+          text: 'Gagal Menyimpan Data',
+          icon: 'warning',
+          confirmButtonColor: '#3085d6',
         });
       }
-    } catch (error) {
-      Swal.fire({
-        title: 'Gagal',
-        text: 'Gagal Menyimpan Data',
-        icon: 'warning',
-        confirmButtonColor: '#3085d6',
-      });
+    } else {
+      e.preventDefault();
+      const data = {
+        name: templateName,
+      };
+      try {
+        const response = await axios.patch(`${import.meta.env.VITE_API_URL}/template/${id}`, data);
+        if (response) {
+          Swal.fire({
+            title: 'Done',
+            text: `Data succesfully Updated`,
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: 'rgb(3 150 199)',
+          }).then((res) => {
+            window.location.reload();
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Gagal',
+          text: 'Gagal Mengupdate Data',
+          icon: 'warning',
+          confirmButtonColor: '#3085d6',
+        });
+      }
     }
 
     onClose(); // Tutup modal setelah submit
@@ -40,7 +77,9 @@ function CreateTemplateModal({ onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-md w-[30rem]">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Create New Template</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          {status === 'add' ? 'Create New Template' : 'Edit Template'}
+        </h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
