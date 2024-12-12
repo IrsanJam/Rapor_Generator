@@ -11,41 +11,62 @@ import Loading from '../../secondary_components/third_components/Loading';
 const Raport = () => {
   const { id } = useParams();
   const { data } = useData(id);
-  const [load, setLoading] = useState(false);
 
   const handleDownload = async () => {
-    try {
-      const pages = document.querySelectorAll('.page_background, .page');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      let isFirstPage = true;
-      setLoading(true);
+    const pages = document.querySelectorAll('.page_background, .page');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    let isFirstPage = true;
 
-      for (const page of pages) {
-        const canvas = await html2canvas(page, { scale: 1.8, useCORS: true }); // Ubah skala dari 3 menjadi 2
-        const imgData = canvas.toDataURL('image/jpeg', 0.7);
-        const imgWidth = 210; // A4 width in mm
-        const imgHeight = 290; // A4 height in mm
+    for (const page of pages) {
+      const canvas = await html2canvas(page, { scale: 2, useCORS: true }); // Ubah skala dari 3 menjadi 2
+      const imgData = canvas.toDataURL('image/jpeg', 0.7);
+      const imgWidth = 210; // A4 width in mm
+      const imgHeight = 290; // A4 height in mm
 
-        if (!isFirstPage) {
-          pdf.addPage();
-        }
-        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight); // Ubah format dari PNG ke JPEG
-        isFirstPage = false;
+      if (!isFirstPage) {
+        pdf.addPage();
       }
-
-      // Menghasilkan PDF sebagai Blob
-      const pdfOutput = pdf.output('blob');
-
-      // Membuat URL objek dari Blob
-      const pdfUrl = URL.createObjectURL(pdfOutput);
-
-      // Membuka PDF di tab baru
-      window.open(pdfUrl, '_blank');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
+      pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight); // Ubah format dari PNG ke JPEG
+      isFirstPage = false;
     }
+
+    // Menghasilkan PDF sebagai Blob
+    const pdfOutput = pdf.output('blob');
+
+    // Membuat URL objek dari Blob
+    const pdfUrl = URL.createObjectURL(pdfOutput);
+
+    // Membuka PDF di tab baru
+    window.open(pdfUrl, '_blank');
   };
 
+  // const handleDownload = async () => {
+  //   const pages = document.querySelectorAll('.page_background, .page');
+  //   const pdf = new jsPDF('p', 'mm', 'a4');
+  //   let isFirstPage = true;
+
+  //   for (const page of pages) {
+  //     const canvas = await html2canvas(page, { scale: 1.8, useCORS: true }); // Ubah skala dari 3 menjadi 2
+  //     const imgData = canvas.toDataURL('image/jpeg', 0.7);
+  //     const imgWidth = 210; // A4 width in mm
+  //     const imgHeight = 290; // A4 height in mm
+
+  //     if (!isFirstPage) {
+  //       pdf.addPage();
+  //     }
+  //     pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight); // Ubah format dari PNG ke JPEG
+  //     isFirstPage = false;
+  //   }
+
+  //   // Menghasilkan PDF sebagai Blob
+  //   const pdfOutput = pdf.output('blob');
+
+  //   // Membuat URL objek dari Blob
+  //   const pdfUrl = URL.createObjectURL(pdfOutput);
+
+  //   // Membuka PDF di tab baru
+  //   window.open(pdfUrl, '_blank');
+  // };
   const DynamicDocument = ({ data }) => {
     let currentPageContent = [];
     let currentSubpageContent = [];
@@ -1177,6 +1198,12 @@ const Raport = () => {
               currentSubpageContent.push(<div className="mb-[33px] text-white">p</div>);
               break;
 
+            case 'paragraph':
+              currentSubpageContent.push(
+                <p className={` text-${item.alignment} text-black text-[11px]`}>{item.value}</p>
+              );
+              break;
+
             default:
               return null;
           }
@@ -1195,7 +1222,7 @@ const Raport = () => {
   return (
     <>
       <button
-        className="top-5 text-white rounded-md right-[-75%]  relative z-[111] px-5 py-2 bg-zinc-700"
+        className="top-24 text-white rounded-md right-5  fixed z-[111] px-5 py-2 bg-zinc-900 hover:opacity-70"
         onClick={handleDownload}
       >
         <div onClick={handleDownload} className="flex justify-center items-center gap-3">
@@ -1205,7 +1232,7 @@ const Raport = () => {
       </button>
       <div
         id="content-to-pdf"
-        className="font-normal avoid-break max-h-screen overflow-hidden mt-[-28px] px-5 hover:overflow-y-scroll"
+        className="font-normal avoid-break max-h-screen overflow-hidden mt-3 px-5 hover:overflow-y-scroll"
       >
         <DynamicDocument data={data} />
       </div>

@@ -350,7 +350,7 @@ const Layout = ({ children }) => {
         </button>
       </nav>
 
-      <div className="flex-1 flex flex-col bg-white">{children}</div>
+      <div className="flex-1 flex flex-col bg-white my_background">{children}</div>
     </div>
   );
 };

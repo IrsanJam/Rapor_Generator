@@ -23,19 +23,19 @@ export default function CardComponents({ onCreateTemplateClick, buttonCard }) {
       <div className="p-3">
         <button
           onClick={onCreateTemplateClick}
-          className="px-6 m-3  p-4 bg-gray-500 text-white relative z-[9999] font-semibold rounded-md hover:bg-gray-300"
+          className="px-6 m-3  py-3 bg-gray-500 text-white relative z-[9999] font-semibold rounded-md hover:bg-gray-300"
         >
           Create a Template
         </button>
 
         {buttonCard.map((card) => (
-          <Card key={card.id} className="m-3 w-[40%]">
-            <CardBody className="bg-zinc-200 w-full  rounded-md text-black p-3 flex justify-center items-center gap-3">
+          <Card key={card.id} className="m-3 !shadow-none w-[70%]">
+            <CardBody className="bg-zinc-200 w-full   rounded-md text-black p-3 flex justify-center items-center gap-3">
               <div className="flex justify-between w-full items-center gap-4">
                 <p className="pl-3">{card.name}</p>
                 <div
                   onClick={() => handleCardClick(card)}
-                  className="bg-green-500 hover:cursor-pointer hover:bg-green-300 rounded-full gap-3 flex justify-center items-center p-2 w-[5rem]"
+                  className="hover:cursor-pointer text-zinc-950 hover:text-zinc-500 hover:scale-110 rounded-full gap-3 flex justify-center items-center p-2 w-[5rem]"
                 >
                   <GoArrowRight color="bg-green-300" />
                 </div>

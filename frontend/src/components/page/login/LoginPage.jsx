@@ -56,7 +56,7 @@ const LoginPage = () => {
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <div className="flex-col justify-center items-center w-full gap-5">
                 <img
-                  className="mx-auto max-h-[100px] max-w-[100px]"
+                  className="ml-[148px] max-h-[100px]  w-[100px]"
                   src="../../public/icon-preview.png"
                   alt="logo"
                 />

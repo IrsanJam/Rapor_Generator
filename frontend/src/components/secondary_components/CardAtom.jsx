@@ -31,7 +31,7 @@ export default function CardAtom({ name, id, paramsId, deleteData, formData, par
       <Card style={style} className="mb-4">
         <CardBody className="p-4 text-zinc-900 rounded-md">
           <div className="flex justify-start px-20 items-center">
-            <div ref={setNodeRef} {...attributes} {...listeners} className="flex gap-8 !w-[180px] ">
+            <div ref={setNodeRef} {...attributes} {...listeners} className="flex gap-8 !w-[200px] ">
               <div>
                 <Puzzle />
               </div>
