@@ -51,6 +51,8 @@ function ModalComponent({ onClose, id, edit, parentId, formEdit }) {
   };
 
   const shouldRenderTextComp =
+    selectData === 'title' ||
+    selectData === 'title_medium' ||
     selectData === 'h1' ||
     selectData === 'h2' ||
     selectData === 'h3' ||

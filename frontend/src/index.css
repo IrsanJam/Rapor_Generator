@@ -6147,21 +6147,6 @@ body {
   -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
-.page_background {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 0;
-  margin: 16mm auto;
-  /*border: 1px #D3D3D3 solid;
-  border-radius: 5px;*/
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  -moz-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  background-image: url(https://res.cloudinary.com/dmuggkwp1/image/upload/v1733367055/Desain_tanpa_judul_4_rnzq4e.png);
-  background-position: center; /* This will center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-size: cover; /* Make the background cover the entire div */
-}
 
 .my_background {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
