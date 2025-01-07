@@ -50,7 +50,7 @@ const Raport = () => {
               // Render the current page if it has content
               const page = (
                 <div
-                  className={index === currentSubpageContent.length ? 'page' : 'page_background'}
+                  className={index === currentSubpageContent.length && 'page'}
                   key={`page-${index}`}
                 >
                   <div key={`subpage-${index}`} className="subpage ">
