@@ -79,7 +79,7 @@ const Raport = () => {
               );
               break;
 
-            case 'h1':
+            case 'title':
               // When adding an h1, we can treat it as content for the current page
               currentSubpageContent.push(
                 <p className={`title text-${item.alignment}`} key={index}>
@@ -88,7 +88,7 @@ const Raport = () => {
               );
               break;
 
-            case 'h2':
+            case 'title_medium':
               // When adding an h2, we can treat it as content for the current page
               currentSubpageContent.push(
                 <p className={`text-[18px] uppercase font-bold text-${item.alignment}`} key={index}>
